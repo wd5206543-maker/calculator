@@ -55,27 +55,57 @@
         .card-icon { font-size: 20px; }
         
         /* الصفحات المنفصلة المعزولة */
-        .page { display: none; background-color: var(--bg-card); border-radius: 22px; padding: 15px; margin-top: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .page { display: none; background-color: var(--bg-card); border-radius: 22px; padding: 15px; margin-top: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); text-align: center; }
         .page.active { display: block; }
-        .back-btn { background-color: var(--bg-item); color: #fff; border: none; padding: 12px; border-radius: 12px; cursor: pointer; font-weight: bold; margin-bottom: 15px; width: 100%; text-align: center; font-size: 14px; }
+        .back-btn { background-color: var(--bg-item); color: #fff; border: none; padding: 12px; border-radius: 12px; cursor: pointer; font-weight: bold; margin-bottom: 25px; width: 100%; text-align: center; font-size: 14px; }
         
-        /* حاوية البث المباشر المريحة والمطورة للموبايل */
-        .live-widget-container {
-            width: 100%;
-            height: 550px;
-            border-radius: 14px;
-            overflow: hidden;
+        /* كرت تشغيل المباريات المطور والمقاوم للحجب */
+        .launch-box {
+            background: linear-gradient(145deg, #1e1e24, #141418);
             border: 1px solid #2d2d35;
-            background-color: var(--bg-item);
+            border-radius: 16px;
+            padding: 30px 20px;
+            margin-top: 20px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
         }
-        .live-widget-container iframe {
+        .launch-box p { color: var(--text-muted); font-size: 14px; margin-bottom: 25px; line-height: 1.6; }
+        
+        .live-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
-            height: 100%;
-            border: none;
+            box-sizing: border-box;
+            background: linear-gradient(90deg, #02e052, #00b33e);
+            color: #000;
+            text-decoration: none;
+            padding: 16px;
+            border-radius: 14px;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(2, 224, 82, 0.3);
+            transition: transform 0.2s;
+        }
+        .live-btn:active { transform: scale(0.97); }
+        
+        /* نقطة النبض المباشر */
+        .pulse-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: #ff3b30;
+            border-radius: 50%;
+            margin-left: 10px;
+            animation: pulse 1.2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(0.8); opacity: 0.5; }
         }
 
         /* الآلة الحاسبة */
-        .calculator { background-color: var(--bg-item); padding: 15px; border-radius: 20px; }
+        .calculator { background-color: var(--bg-item); padding: 15px; border-radius: 20px; text-align: right; }
         #display { width: 100%; height: 60px; background-color: var(--bg-main); border: none; border-radius: 12px; color: #fff; font-size: 24px; text-align: left; padding: 10px; box-sizing: border-box; margin-bottom: 15px; }
         .calc-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
         .calc-buttons button { padding: 15px; font-size: 16px; border-radius: 10px; background-color: #333; color: white; border: none; font-weight: bold; cursor: pointer;}
@@ -163,76 +193,85 @@
             </div>
         </div>
 
-        <!-- صفحات الدوريات المعزولة -->
+        <!-- أزرار التشغيل الذكية لكل دوري (عربي بالكامل وبدون تقطيع) -->
         <div id="eng-page" class="page">
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2 style="color:#3d195a; text-align:center;">الدوري الإنجليزي 🏴󠁧󠁢󠁥󠁮󠁧󠁿</h2>
-            <div class="live-widget-container">
-                <iframe src="https://www.livescore.in/ar/free-livescore/?leagues=england-premier-league"></iframe>
+            <h2 style="color:#3d195a;">الدوري الإنجليزي 🏴󠁧󠁢󠁥󠁮󠁧󠁿</h2>
+            <div class="launch-box">
+                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الإنجليزي باللغة العربية فوراً.</p>
+                <a href="https://www.flashscore.com.eg/football/england/premier-league/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
             </div>
         </div>
 
         <div id="esp-page" class="page">
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2 style="color:#ee242c; text-align:center;">الدوري الإسباني 🇪🇸</h2>
-            <div class="live-widget-container">
-                <iframe src="https://www.livescore.in/ar/free-livescore/?leagues=spain-laliga"></iframe>
+            <h2 style="color:#ee242c;">الدوري الإسباني 🇪🇸</h2>
+            <div class="launch-box">
+                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الإسباني باللغة العربية فوراً.</p>
+                <a href="https://www.flashscore.com.eg/football/spain/laliga/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
             </div>
         </div>
 
         <div id="ita-page" class="page">
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2 style="color:#008fd7; text-align:center;">الدوري الإيطالي 🇮🇹</h2>
-            <div class="live-widget-container">
-                <iframe src="https://www.livescore.in/ar/free-livescore/?leagues=italy-serie-a"></iframe>
+            <h2 style="color:#008fd7;">الدوري الإيطالي 🇮🇹</h2>
+            <div class="launch-box">
+                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الإيطالي باللغة العربية فوراً.</p>
+                <a href="https://www.flashscore.com.eg/football/italy/serie-a/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
             </div>
         </div>
 
         <div id="ger-page" class="page">
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2 style="color:#d20a11; text-align:center;">الدوري الألماني 🇩🇪</h2>
-            <div class="live-widget-container">
-                <iframe src="https://www.livescore.in/ar/free-livescore/?leagues=germany-bundesliga"></iframe>
+            <h2 style="color:#d20a11;">الدوري الألماني 🇩🇪</h2>
+            <div class="launch-box">
+                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الألماني باللغة العربية فوراً.</p>
+                <a href="https://www.flashscore.com.eg/football/germany/bundesliga/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
             </div>
         </div>
 
         <div id="fra-page" class="page">
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2 style="color:#002f6c; text-align:center;">الدوري الفرنسي 🇫🇷</h2>
-            <div class="live-widget-container">
-                <iframe src="https://www.livescore.in/ar/free-livescore/?leagues=france-ligue-1"></iframe>
+            <h2 style="color:#002f6c;">الدوري الفرنسي 🇫🇷</h2>
+            <div class="launch-box">
+                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الفرنسي باللغة العربية فوراً.</p>
+                <a href="https://www.flashscore.com.eg/football/france/ligue-1/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
             </div>
         </div>
 
         <div id="egy-page" class="page">
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2 style="color:var(--accent-green); text-align:center;">الدوري المصري الممتاز 🦅</h2>
-            <div class="live-widget-container">
-                <iframe src="https://www.livescore.in/ar/free-livescore/?leagues=egypt-premier-league"></iframe>
+            <h2 style="color:var(--accent-green);">الدوري المصري الممتاز 🦅</h2>
+            <div class="launch-box">
+                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري المصري باللغة العربية فوراً.</p>
+                <a href="https://www.flashscore.com.eg/football/egypt/premier-league/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
             </div>
         </div>
 
         <div id="sau-page" class="page">
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2 style="color:#006c35; text-align:center;">الدوري السعودي للمحترفين 🇸🇦</h2>
-            <div class="live-widget-container">
-                <iframe src="https://www.livescore.in/ar/free-livescore/?leagues=saudi-arabia-professional-league"></iframe>
+            <h2 style="color:#006c35;">الدوري السعودي للمحترفين 🇸🇦</h2>
+            <div class="launch-box">
+                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري السعودي باللغة العربية فوراً.</p>
+                <a href="https://www.flashscore.com.eg/football/saudi-arabia/rsl/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
             </div>
         </div>
 
         <div id="usa-page" class="page">
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2 style="color:#0a2240; text-align:center;">الدوري الأمريكي (MLS) 🇺🇸</h2>
-            <div class="live-widget-container">
-                <iframe src="https://www.livescore.in/ar/free-livescore/?leagues=usa-mls"></iframe>
+            <h2 style="color:#0a2240;">الدوري الأمريكي (MLS) 🇺🇸</h2>
+            <div class="launch-box">
+                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الأمريكي باللغة العربية فوراً.</p>
+                <a href="https://www.flashscore.com.eg/football/usa/mls/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
             </div>
         </div>
 
         <div id="wc-page" class="page">
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2 style="color:#ff9f0a; text-align:center;">مباريات كأس العالم 🏆</h2>
-            <div class="live-widget-container">
-                <iframe src="https://www.livescore.in/ar/free-livescore/?leagues=world-cup"></iframe>
+            <h2 style="color:#ff9f0a;">مباريات كأس العالم 🏆</h2>
+            <div class="launch-box">
+                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات البطولة باللغة العربية فوراً.</p>
+                <a href="https://www.flashscore.com.eg/football/world/world-cup/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
             </div>
         </div>
 
