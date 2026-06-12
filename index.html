@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة حمو الرايق | مركز المباريات العالمي</title>
+    <title>منصة حمو الرايق V3</title>
     <style>
         :root {
             --bg-main: #0f0f11;
@@ -26,9 +26,8 @@
             box-sizing: border-box;
         }
         .container { width: 100%; max-width: 480px; }
-        h1.logo { text-align: center; font-size: 24px; color: var(--accent-green); margin-bottom: 20px; }
+        h1.logo { text-align: center; font-size: 22px; color: var(--accent-green); margin-bottom: 20px; }
         
-        /* القائمة الرئيسية */
         .dashboard-grid { display: flex; flex-direction: column; gap: 12px; }
         .main-card {
             background-color: var(--bg-card); border-radius: 18px; padding: 18px;
@@ -38,7 +37,6 @@
         }
         .main-card:active { transform: scale(0.98); }
         
-        /* ألوان الهوية لكل دوري */
         .main-card.calc { border-left: 5px solid var(--accent-blue); }
         .main-card.eng { border-left: 5px solid #3d195a; }
         .main-card.esp { border-left: 5px solid #ee242c; }
@@ -47,56 +45,32 @@
         .main-card.fra { border-left: 5px solid #002f6c; }
         .main-card.egy { border-left: 5px solid var(--accent-green); }
         .main-card.sau { border-left: 5px solid #006c35; }
-        .main-card.usa { border-left: 5px solid #0a2240; }
-        .main-card.wc { border-left: 5px solid #ff9f0a; }
         
         .card-info h3 { margin: 0 0 4px 0; font-size: 16px; }
         .card-info p { margin: 0; font-size: 12px; color: var(--text-muted); }
         .card-icon { font-size: 20px; }
         
-        /* الصفحات المنفصلة */
         .page { display: none; background-color: var(--bg-card); border-radius: 22px; padding: 15px; margin-top: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); text-align: center; }
         .page.active { display: block; }
         .back-btn { background-color: var(--bg-item); color: #fff; border: none; padding: 12px; border-radius: 12px; cursor: pointer; font-weight: bold; margin-bottom: 25px; width: 100%; text-align: center; font-size: 14px; }
         
-        /* كرت تشغيل المباريات */
         .launch-box {
             background: linear-gradient(145deg, #1e1e24, #141418);
             border: 1px solid #2d2d35;
             border-radius: 16px;
             padding: 30px 20px;
             margin-top: 20px;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
         }
         .launch-box p { color: var(--text-muted); font-size: 14px; margin-bottom: 25px; line-height: 1.6; }
         
         .live-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            box-sizing: border-box;
-            background: linear-gradient(90deg, #02e052, #00b33e);
-            color: #000;
-            text-decoration: none;
-            padding: 16px;
-            border-radius: 14px;
-            font-weight: bold;
-            font-size: 16px;
-            box-shadow: 0 4px 15px rgba(2, 224, 82, 0.3);
-            transition: transform 0.2s;
+            display: inline-flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box;
+            background: linear-gradient(90deg, #02e052, #00b33e); color: #000; text-decoration: none;
+            padding: 16px; border-radius: 14px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 15px rgba(2, 224, 82, 0.3);
         }
-        .live-btn:active { transform: scale(0.97); }
         
-        /* نقطة النبض المباشر */
         .pulse-dot {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            background-color: #ff3b30;
-            border-radius: 50%;
-            margin-left: 10px;
-            animation: pulse 1.2s infinite;
+            display: inline-block; width: 10px; height: 10px; background-color: #ff3b30; border-radius: 50%; margin-left: 10px; animation: pulse 1.2s infinite;
         }
         @keyframes pulse {
             0% { transform: scale(0.8); opacity: 0.5; }
@@ -104,7 +78,6 @@
             100% { transform: scale(0.8); opacity: 0.5; }
         }
 
-        /* الآلة الحاسبة */
         .calculator { background-color: var(--bg-item); padding: 15px; border-radius: 20px; text-align: right; }
         #display { width: 100%; height: 60px; background-color: var(--bg-main); border: none; border-radius: 12px; color: #fff; font-size: 24px; text-align: left; padding: 10px; box-sizing: border-box; margin-bottom: 15px; }
         .calc-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
@@ -117,49 +90,33 @@
 <body>
 
     <div class="container">
-        <h1 class="logo">📱 منصة حمو الرايق الرياضية</h1>
+        <!-- الاسم الجديد عشان نكشف الكاش -->
+        <h1 class="logo">🚀 منصة حمو الرايق (تحديث V3 الشغال الجديد)</h1>
 
-        <!-- الشاشة الرئيسية -->
         <div id="main-dashboard" class="dashboard-grid">
             <div class="main-card calc" onclick="openPage('calc-page')">
-                <div class="card-info"><h3>الآلة الحاسبة العلمية</h3><p>حل المعادلات الحسابية فوراً</p></div>
-                <div class="card-icon">🧮</div>
+                <div class="card-info"><h3>الآلة الحاسبة</h3><p>حل المعادلات فوراً</p></div><div class="card-icon">🧮</div>
             </div>
             <div class="main-card eng" onclick="openPage('eng-page')">
-                <div class="card-info"><h3>الدوري الإنجليزي الممتاز</h3><p>مباريات ليفربول، السيتي، واليونايتد</p></div>
-                <div class="card-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+                <div class="card-info"><h3>الدوري الإنجليزي الممتاز</h3><p>ليفربول، السيتي، واليونايتد</p></div><div class="card-icon">🏴</div>
             </div>
             <div class="main-card esp" onclick="openPage('esp-page')">
-                <div class="card-info"><h3>الدوري الإسباني (لا ليغا)</h3><p>مباريات ريال مدريد وبرشلونة الحية</p></div>
-                <div class="card-icon">🇪🇸</div>
+                <div class="card-info"><h3>الدوري الإسباني</h3><p>ريال مدريد وبرشلونة لايف</p></div><div class="card-icon">🇪🇸</div>
             </div>
             <div class="main-card ita" onclick="openPage('ita-page')">
-                <div class="card-info"><h3>الدوري الإيطالي (الكالتشيو)</h3><p>مباريات إنتر، ميلان، ويوفنتوس</p></div>
-                <div class="card-icon">🇮🇹</div>
+                <div class="card-info"><h3>الدوري الإيطالي</h3><p>إنتر، ميلان، ويوفنتوس</p></div><div class="card-icon">🇮🇹</div>
             </div>
             <div class="main-card ger" onclick="openPage('ger-page')">
-                <div class="card-info"><h3>الدوري الألماني (البوندسليغا)</h3><p>متابعة بايرن ميونخ ودورتموند لايف</p></div>
-                <div class="card-icon">🇩🇪</div>
+                <div class="card-info"><h3>الدوري الألماني</h3><p>بايرن ميونخ ودورتموند لايف</p></div><div class="card-icon">🇩🇪</div>
             </div>
             <div class="main-card fra" onclick="openPage('fra-page')">
-                <div class="card-info"><h3>الدوري الفرنسي الممتاز</h3><p>مباريات باريس سان جيرمان الحية</p></div>
-                <div class="card-icon">🇫🇷</div>
+                <div class="card-info"><h3>الدوري الفرنسي</h3><p>باريس سان جيرمان لايف</p></div><div class="card-icon">🇫🇷</div>
             </div>
             <div class="main-card egy" onclick="openPage('egy-page')">
-                <div class="card-info"><h3>الدوري المصري الممتاز</h3><p>مباريات الأهلي والزمالك وأندية القمة</p></div>
-                <div class="card-icon">🦅</div>
+                <div class="card-info"><h3>الدوري المصري الممتاز</h3><p>الأهلي والزمالك والماتشات الحالية</p></div><div class="card-icon">🦅</div>
             </div>
             <div class="main-card sau" onclick="openPage('sau-page')">
-                <div class="card-info"><h3>الدوري السعودي للمحترفين</h3><p>مباريات الهلال، النصر، والاتحاد</p></div>
-                <div class="card-icon">🇸🇦</div>
-            </div>
-            <div class="main-card usa" onclick="openPage('usa-page')">
-                <div class="card-info"><h3>الدوري الأمريكي الممتاز</h3><p>متابعة مباريات إنتر ميامي والـ MLS</p></div>
-                <div class="card-icon">🇺🇸</div>
-            </div>
-            <div class="main-card wc" onclick="openPage('wc-page')">
-                <div class="card-info"><h3>كأس العالم المباشر</h3><p>نتائج وإحصائيات المونديال الحية</p></div>
-                <div class="card-icon">🏆</div>
+                <div class="card-info"><h3>الدوري السعودي للمحترفين</h3><p>الهلال، النصر، والاتحاد</p></div><div class="card-icon">🇸🇦</div>
             </div>
         </div>
 
@@ -193,85 +150,67 @@
             </div>
         </div>
 
-        <!-- صفحات الدوريات بعد تصليح الروابط العالمية -->
+        <!-- صفحات الدوريات بسيرفرات سوفا سكور العالمية السريعة -->
         <div id="eng-page" class="page">
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2 style="color:#3d195a;">الدوري الإنجليزي 🏴󠁧󠁢󠁥󠁮󠁧󠁿</h2>
+            <h2>الدوري الإنجليزي 🏴</h2>
             <div class="launch-box">
-                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الإنجليزي فوراً.</p>
-                <a href="https://www.flashscore.com/football/england/premier-league/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
+                <p>اضغط للفتح المباشر لجدول المباريات والنتائج الحية للدوري الإنجليزي عبر سيرفر Sofascore.</p>
+                <a href="https://www.sofascore.com/tournament/football/england/premier-league/17" target="_blank" class="live-btn"><span class="pulse-dot"></span>شاهد المباريات والنتائج الآن</a>
             </div>
         </div>
 
         <div id="esp-page" class="page">
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2 style="color:#ee242c;">الدوري الإسباني 🇪🇸</h2>
+            <h2>الدوري الإسباني 🇪🇸</h2>
             <div class="launch-box">
-                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الإسباني فوراً.</p>
-                <a href="https://www.flashscore.com/football/spain/laliga/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
+                <p>اضغط للفتح المباشر لجدول المباريات والنتائج الحية للدوري الإسباني عبر سيرفر Sofascore.</p>
+                <a href="https://www.sofascore.com/tournament/football/spain/laliga/8" target="_blank" class="live-btn"><span class="pulse-dot"></span>شاهد المباريات والنتائج الآن</a>
             </div>
         </div>
 
         <div id="ita-page" class="page">
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2 style="color:#008fd7;">الدوري الإيطالي 🇮🇹</h2>
+            <h2>الدوري الإيطالي 🇮🇹</h2>
             <div class="launch-box">
-                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الإيطالي فوراً.</p>
-                <a href="https://www.flashscore.com/football/italy/serie-a/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
+                <p>اضغط للفتح المباشر لجدول المباريات والنتائج الحية للدوري الإيطالي عبر سيرفر Sofascore.</p>
+                <a href="https://www.sofascore.com/tournament/football/italy/serie-a/23" target="_blank" class="live-btn"><span class="pulse-dot"></span>شاهد المباريات والنتائج الآن</a>
             </div>
         </div>
 
         <div id="ger-page" class="page">
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2 style="color:#d20a11;">الدوري الألماني 🇩🇪</h2>
+            <h2>الدوري الألماني 🇩🇪</h2>
             <div class="launch-box">
-                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الألماني فوراً.</p>
-                <a href="https://www.flashscore.com/football/germany/bundesliga/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
+                <p>اضغط للفتح المباشر لجدول المباريات والنتائج الحية للدوري الألماني عبر سيرفر Sofascore.</p>
+                <a href="https://www.sofascore.com/tournament/football/germany/bundesliga/35" target="_blank" class="live-btn"><span class="pulse-dot"></span>شاهد المباريات والنتائج الآن</a>
             </div>
         </div>
 
         <div id="fra-page" class="page">
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2 style="color:#002f6c;">الدوري الفرنسي 🇫🇷</h2>
+            <h2>الدوري الفرنسي 🇫🇷</h2>
             <div class="launch-box">
-                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الفرنسي فوراً.</p>
-                <a href="https://www.flashscore.com/football/france/ligue-1/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
+                <p>اضغط للفتح المباشر لجدول المباريات والنتائج الحية للدوري الفرنسي عبر سيرفر Sofascore.</p>
+                <a href="https://www.sofascore.com/tournament/football/france/ligue-1/34" target="_blank" class="live-btn"><span class="pulse-dot"></span>شاهد المباريات والنتائج الآن</a>
             </div>
         </div>
 
         <div id="egy-page" class="page">
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2 style="color:var(--accent-green);">الدوري المصري الممتاز 🦅</h2>
+            <h2>الدوري المصري الممتاز 🦅</h2>
             <div class="launch-box">
-                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري المصري فوراً.</p>
-                <a href="https://www.flashscore.com/football/egypt/premier-league/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
+                <p>اضغط للفتح المباشر لجدول المباريات والنتائج الحية للدوري المصري عبر سيرفر Sofascore.</p>
+                <a href="https://www.sofascore.com/tournament/football/egypt/premiere-league/1055" target="_blank" class="live-btn"><span class="pulse-dot"></span>شاهد المباريات والنتائج الآن</a>
             </div>
         </div>
 
         <div id="sau-page" class="page">
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2 style="color:#006c35;">الدوري السعودي للمحترفين 🇸🇦</h2>
+            <h2>الدوري السعودي 🇸🇦</h2>
             <div class="launch-box">
-                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري السعودي فوراً.</p>
-                <a href="https://www.flashscore.com/football/saudi-arabia/professional-league/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
-            </div>
-        </div>
-
-        <div id="usa-page" class="page">
-            <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2 style="color:#0a2240;">الدوري الأمريكي (MLS) 🇺🇸</h2>
-            <div class="launch-box">
-                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الأمريكي فوراً.</p>
-                <a href="https://www.flashscore.com/football/usa/mls/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
-            </div>
-        </div>
-
-        <div id="wc-page" class="page">
-            <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2 style="color:#ff9f0a;">مباريات كأس العالم 🏆</h2>
-            <div class="launch-box">
-                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات البطولة فوراً.</p>
-                <a href="https://www.flashscore.com/football/world/world-cup/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
+                <p>اضغط للفتح المباشر لجدول المباريات والنتائج الحية للدوري السعودي عبر سيرفر Sofascore.</p>
+                <a href="https://www.sofascore.com/tournament/football/saudi-arabia/saudi-pro-league/937" target="_blank" class="live-btn"><span class="pulse-dot"></span>شاهد المباريات والنتائج الآن</a>
             </div>
         </div>
 
@@ -288,7 +227,6 @@
             document.getElementById('main-dashboard').style.display = 'flex';
         }
 
-        // لوجيك الآلة الحاسبة
         let display = document.getElementById('display');
         function appendValue(val) { display.value += val; }
         function clearDisplay() { display.value = ''; }
