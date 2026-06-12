@@ -28,7 +28,7 @@
         .container { width: 100%; max-width: 480px; }
         h1.logo { text-align: center; font-size: 24px; color: var(--accent-green); margin-bottom: 20px; }
         
-        /* القائمة الرئيسية المحدثة */
+        /* القائمة الرئيسية */
         .dashboard-grid { display: flex; flex-direction: column; gap: 12px; }
         .main-card {
             background-color: var(--bg-card); border-radius: 18px; padding: 18px;
@@ -54,12 +54,12 @@
         .card-info p { margin: 0; font-size: 12px; color: var(--text-muted); }
         .card-icon { font-size: 20px; }
         
-        /* الصفحات المنفصلة المعزولة */
+        /* الصفحات المنفصلة */
         .page { display: none; background-color: var(--bg-card); border-radius: 22px; padding: 15px; margin-top: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); text-align: center; }
         .page.active { display: block; }
         .back-btn { background-color: var(--bg-item); color: #fff; border: none; padding: 12px; border-radius: 12px; cursor: pointer; font-weight: bold; margin-bottom: 25px; width: 100%; text-align: center; font-size: 14px; }
         
-        /* كرت تشغيل المباريات المطور والمقاوم للحجب */
+        /* كرت تشغيل المباريات */
         .launch-box {
             background: linear-gradient(145deg, #1e1e24, #141418);
             border: 1px solid #2d2d35;
@@ -119,7 +119,7 @@
     <div class="container">
         <h1 class="logo">📱 منصة حمو الرايق الرياضية</h1>
 
-        <!-- الشاشة الرئيسية المقسمة بالكامل -->
+        <!-- الشاشة الرئيسية -->
         <div id="main-dashboard" class="dashboard-grid">
             <div class="main-card calc" onclick="openPage('calc-page')">
                 <div class="card-info"><h3>الآلة الحاسبة العلمية</h3><p>حل المعادلات الحسابية فوراً</p></div>
@@ -193,13 +193,13 @@
             </div>
         </div>
 
-        <!-- أزرار التشغيل الذكية لكل دوري (عربي بالكامل وبدون تقطيع) -->
+        <!-- صفحات الدوريات بعد تصليح الروابط العالمية -->
         <div id="eng-page" class="page">
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
             <h2 style="color:#3d195a;">الدوري الإنجليزي 🏴󠁧󠁢󠁥󠁮󠁧󠁿</h2>
             <div class="launch-box">
-                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الإنجليزي باللغة العربية فوراً.</p>
-                <a href="https://www.flashscore.com.eg/football/england/premier-league/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
+                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الإنجليزي فوراً.</p>
+                <a href="https://www.flashscore.com/football/england/premier-league/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
             </div>
         </div>
 
@@ -207,8 +207,8 @@
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
             <h2 style="color:#ee242c;">الدوري الإسباني 🇪🇸</h2>
             <div class="launch-box">
-                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الإسباني باللغة العربية فوراً.</p>
-                <a href="https://www.flashscore.com.eg/football/spain/laliga/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
+                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الإسباني فوراً.</p>
+                <a href="https://www.flashscore.com/football/spain/laliga/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
             </div>
         </div>
 
@@ -216,8 +216,8 @@
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
             <h2 style="color:#008fd7;">الدوري الإيطالي 🇮🇹</h2>
             <div class="launch-box">
-                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الإيطالي باللغة العربية فوراً.</p>
-                <a href="https://www.flashscore.com.eg/football/italy/serie-a/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
+                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الإيطالي فوراً.</p>
+                <a href="https://www.flashscore.com/football/italy/serie-a/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
             </div>
         </div>
 
@@ -225,8 +225,8 @@
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
             <h2 style="color:#d20a11;">الدوري الألماني 🇩🇪</h2>
             <div class="launch-box">
-                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الألماني باللغة العربية فوراً.</p>
-                <a href="https://www.flashscore.com.eg/football/germany/bundesliga/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
+                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الألماني فوراً.</p>
+                <a href="https://www.flashscore.com/football/germany/bundesliga/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
             </div>
         </div>
 
@@ -234,8 +234,8 @@
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
             <h2 style="color:#002f6c;">الدوري الفرنسي 🇫🇷</h2>
             <div class="launch-box">
-                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الفرنسي باللغة العربية فوراً.</p>
-                <a href="https://www.flashscore.com.eg/football/france/ligue-1/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
+                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الفرنسي فوراً.</p>
+                <a href="https://www.flashscore.com/football/france/ligue-1/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
             </div>
         </div>
 
@@ -243,8 +243,8 @@
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
             <h2 style="color:var(--accent-green);">الدوري المصري الممتاز 🦅</h2>
             <div class="launch-box">
-                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري المصري باللغة العربية فوراً.</p>
-                <a href="https://www.flashscore.com.eg/football/egypt/premier-league/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
+                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري المصري فوراً.</p>
+                <a href="https://www.flashscore.com/football/egypt/premier-league/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
             </div>
         </div>
 
@@ -252,8 +252,8 @@
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
             <h2 style="color:#006c35;">الدوري السعودي للمحترفين 🇸🇦</h2>
             <div class="launch-box">
-                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري السعودي باللغة العربية فوراً.</p>
-                <a href="https://www.flashscore.com.eg/football/saudi-arabia/rsl/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
+                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري السعودي فوراً.</p>
+                <a href="https://www.flashscore.com/football/saudi-arabia/professional-league/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
             </div>
         </div>
 
@@ -261,8 +261,8 @@
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
             <h2 style="color:#0a2240;">الدوري الأمريكي (MLS) 🇺🇸</h2>
             <div class="launch-box">
-                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الأمريكي باللغة العربية فوراً.</p>
-                <a href="https://www.flashscore.com.eg/football/usa/mls/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
+                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات الدوري الأمريكي فوراً.</p>
+                <a href="https://www.flashscore.com/football/usa/mls/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
             </div>
         </div>
 
@@ -270,8 +270,8 @@
             <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
             <h2 style="color:#ff9f0a;">مباريات كأس العالم 🏆</h2>
             <div class="launch-box">
-                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات البطولة باللغة العربية فوراً.</p>
-                <a href="https://www.flashscore.com.eg/football/world/world-cup/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
+                <p>اضغط على الزر بالأسفل لفتح مركز المباريات المباشر، النتائج، جدول الترتيب، وإحصائيات البطولة فوراً.</p>
+                <a href="https://www.flashscore.com/football/world/world-cup/" target="_blank" class="live-btn"><span class="pulse-dot"></span>عرض جدول المباريات لايف</a>
             </div>
         </div>
 
