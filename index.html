@@ -1,15 +1,84 @@
-plus {
-            grid-row: span 2;
-            background-color: #007aff;
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الآلة الحاسبة العلمية المطورة</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #121212;
+            margin: 0;
+            font-family: Arial, sans-serif;
         }
-
-        .equal {
-            grid-row: span 2;
-            background-color: #2ecc71;
+        .calculator {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            width: 340px;
         }
-
-        .zero {
+        #display {
+            width: 100%;
+            height: 70px;
+            background-color: #2d2d2d;
+            border: none;
+            border-radius: 15px;
+            color: #fff;
+            font-size: 28px;
+            text-align: right;
+            padding: 15px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        button {
+            padding: 18px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 12px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.1s;
+        }
+        button:active {
+            background-color: #444;
+        }
+        button.operator {
+            background-color: #ff9f0a;
+        }
+        button.operator:active {
+            background-color: #cc7f08;
+        }
+        button.clear {
+            background-color: #a5a5a5;
+            color: #000;
+        }
+        button.clear:active {
+            background-color: #8e8e8e;
+        }
+        button.sci {
+            background-color: #2196F3;
+            font-size: 16px;
+        }
+        button.sci:active {
+            background-color: #1976D2;
+        }
+        button.equal {
             grid-column: span 2;
+            background-color: #30d158;
+        }
+        button.equal:active {
+            background-color: #24a142;
         }
     </style>
 </head>
@@ -17,62 +86,82 @@ plus {
 
     <div class="calculator">
         <input type="text" id="display" readonly placeholder="0">
-        
         <div class="buttons">
-            <button>C</button>
-            <button>÷</button>
-            <button>×</button>
-            <button>-</button>
-            
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button class="plus">+</button>
-            
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button class="equal">=</button>
-            
-            <button class="zero">0</button>
-            <button>.</button>
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button class="clear" onclick="deleteLast()">DEL</button>
+            <button class="sci" onclick="appendValue('(')">(</button>
+            <button class="sci" onclick="appendValue(')')">)</button>
+
+            <button class="sci" onclick="sciOp('sin')">sin</button>
+            <button class="sci" onclick="sciOp('cos')">cos</button>
+            <button class="sci" onclick="sciOp('tan')">tan</button>
+            <button class="operator" onclick="appendValue('/')">÷</button>
+
+            <button class="sci" onclick="sciOp('sqrt')">√</button>
+            <button class="sci" onclick="sciOp('sq')">x²</button>
+            <button class="sci" onclick="appendValue('3.14159265')">π</button>
+            <button class="operator" onclick="appendValue('*')">×</button>
+
+            <button onclick="appendValue('7')">7</button>
+            <button onclick="appendValue('8')">8</button>
+            <button onclick="appendValue('9')">9</button>
+            <button class="operator" onclick="appendValue('-')">-</button>
+
+            <button onclick="appendValue('4')">4</button>
+            <button onclick="appendValue('5')">5</button>
+            <button onclick="appendValue('6')">6</button>
+            <button class="operator" onclick="appendValue('+')">+</button>
+
+            <button onclick="appendValue('1')">1</button>
+            <button onclick="appendValue('2')">2</button>
+            <button onclick="appendValue('3')">3</button>
+            <button class="equal" onclick="calculate()">=</button>
+
+            <button onclick="appendValue('0')" style="grid-column: span 2;">0</button>
+            <button onclick="appendValue('.')">.</button>
         </div>
     </div>
 
     <script>
-        const display = document.getElementById('display');
-        const buttons = document.querySelectorAll('button');
+        let display = document.getElementById('display');
 
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                const value = button.innerText;
+        function appendValue(val) {
+            display.value += val;
+        }
 
-                if (value === 'C') {
-                    display.value = '';
-                } else if (value === '=') {
-                    try {
-                        if (display.value !== '') {
-                            // خطوة الترجمة السحرية:
-                            // نأخذ النص من الشاشة ونستبدل الرموز العادية برمز البرمجة قبل الحساب
-                            let expression = display.value;
-                            expression = expression.replace(/×/g, '*').replace(/÷/g, '/');
-                            
-                            display.value = eval(expression);
-                        }
-                    } catch (error) {
-                        display.value = 'خطأ';
-                    }
-                } else {
-                    if (display.value === 'خطأ') {
-                        display.value = '';
-                    }
-                    display.value += value;
+        function clearDisplay() {
+            display.value = '';
+        }
+
+        function deleteLast() {
+            display.value = display.value.slice(0, -1);
+        }
+
+        function calculate() {
+            try {
+                let result = eval(display.value);
+                if (result !== undefined) {
+                    display.value = result;
                 }
-            });
-        });
-    </script>
+            } catch (error) {
+                display.value = 'Error';
+            }
+        }
 
+        function sciOp(op) {
+            try {
+                let val = parseFloat(display.value);
+                if (isNaN(val)) val = 0;
+                
+                if (op === 'sin') display.value = Math.sin(val * Math.PI / 180).toFixed(4); 
+                else if (op === 'cos') display.value = Math.cos(val * Math.PI / 180).toFixed(4);
+                else if (op === 'tan') display.value = Math.tan(val * Math.PI / 180).toFixed(4);
+                else if (op === 'sqrt') display.value = Math.sqrt(val);
+                else if (op === 'sq') display.value = Math.pow(val, 2);
+            } catch (e) {
+                display.value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
