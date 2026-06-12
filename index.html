@@ -1,25 +1,62 @@
 <!DOCTYPE html>
-<html lang="ar" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الآلة الحاسبة العلمية المطورة</title>
+    <title>موقع الأدوات المطور | آلة حاسبة ودليل كأس العالم 2026</title>
     <style>
         body {
+            background-color: #121212;
+            color: #fff;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            background-color: #121212;
-            margin: 0;
-            font-family: Arial, sans-serif;
+            padding: 20px;
+            box-sizing: border-box;
         }
+        /* نظام التبويب (Tabs) */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            background-color: #1e1e1e;
+            padding: 8px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .tab-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 40px;
+            background-color: transparent;
+            color: #aaa;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active {
+            background-color: #30d158;
+            color: #000;
+        }
+        .tab-content {
+            display: none;
+            width: 100%;
+            max-width: 450px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        /* تصميم الآلة الحاسبة */
         .calculator {
             background-color: #1e1e1e;
             padding: 20px;
             border-radius: 25px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-            width: 340px;
         }
         #display {
             width: 100%;
@@ -29,7 +66,8 @@
             border-radius: 15px;
             color: #fff;
             font-size: 28px;
-            text-align: right;
+            text-align: left;
+            direction: ltr;
             padding: 15px;
             box-sizing: border-box;
             margin-bottom: 20px;
@@ -48,119 +86,159 @@
             background-color: #333;
             color: #fff;
             cursor: pointer;
-            transition: background-color 0.1s;
         }
-        button:active {
-            background-color: #444;
+        button.operator { background-color: #ff9f0a; }
+        button.clear { background-color: #a5a5a5; color: #000; }
+        button.sci { background-color: #2196F3; font-size: 16px; }
+        button.equal { grid-column: span 2; background-color: #30d158; color: #000; }
+        
+        /* تصميم دليل كأس العالم */
+        .guide-card {
+            background-color: #1e1e1e;
+            padding: 25px;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            line-height: 1.6;
         }
-        button.operator {
+        .guide-card h2 {
+            color: #30d158;
+            text-align: center;
+            margin-top: 0;
+        }
+        .section-title {
+            color: #2196F3;
+            font-weight: bold;
+            margin-top: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+        .channel-list {
+            list-style: none;
+            padding: 0;
+        }
+        .channel-list li {
+            background-color: #2d2d2d;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .badge {
             background-color: #ff9f0a;
-        }
-        button.operator:active {
-            background-color: #cc7f08;
-        }
-        button.clear {
-            background-color: #a5a5a5;
             color: #000;
-        }
-        button.clear:active {
-            background-color: #8e8e8e;
-        }
-        button.sci {
-            background-color: #2196F3;
-            font-size: 16px;
-        }
-        button.sci:active {
-            background-color: #1976D2;
-        }
-        button.equal {
-            grid-column: span 2;
-            background-color: #30d158;
-        }
-        button.equal:active {
-            background-color: #24a142;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <div class="calculator">
-        <input type="text" id="display" readonly placeholder="0">
-        <div class="buttons">
-            <button class="clear" onclick="clearDisplay()">C</button>
-            <button class="clear" onclick="deleteLast()">DEL</button>
-            <button class="sci" onclick="appendValue('(')">(</button>
-            <button class="sci" onclick="appendValue(')')">)</button>
+    <!-- أزرار التنقل بين الأقسام -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('calc-tab', this)">الآلة الحاسبة العلمية</button>
+        <button class="tab-btn" onclick="switchTab('guide-tab', this)">دليل كأس العالم 2026</button>
+    </div>
 
-            <button class="sci" onclick="sciOp('sin')">sin</button>
-            <button class="sci" onclick="sciOp('cos')">cos</button>
-            <button class="sci" onclick="sciOp('tan')">tan</button>
-            <button class="operator" onclick="appendValue('/')">÷</button>
+    <!-- محتوى الآلة الحاسبة -->
+    <div id="calc-tab" class="tab-content active">
+        <div class="calculator">
+            <input type="text" id="display" readonly placeholder="0">
+            <div class="buttons">
+                <button class="clear" onclick="clearDisplay()">C</button>
+                <button class="clear" onclick="deleteLast()">DEL</button>
+                <button class="sci" onclick="appendValue('(')">(</button>
+                <button class="sci" onclick="appendValue(')')">)</button>
 
-            <button class="sci" onclick="sciOp('sqrt')">√</button>
-            <button class="sci" onclick="sciOp('sq')">x²</button>
-            <button class="sci" onclick="appendValue('3.14159265')">π</button>
-            <button class="operator" onclick="appendValue('*')">×</button>
+                <button class="sci" onclick="sciOp('sin')">sin</button>
+                <button class="sci" onclick="sciOp('cos')">cos</button>
+                <button class="sci" onclick="sciOp('tan')">tan</button>
+                <button class="operator" onclick="appendValue('/')">÷</button>
 
-            <button onclick="appendValue('7')">7</button>
-            <button onclick="appendValue('8')">8</button>
-            <button onclick="appendValue('9')">9</button>
-            <button class="operator" onclick="appendValue('-')">-</button>
+                <button class="sci" onclick="sciOp('sqrt')">√</button>
+                <button class="sci" onclick="sciOp('sq')">x²</button>
+                <button class="sci" onclick="appendValue('3.14159')">π</button>
+                <button class="operator" onclick="appendValue('*')">×</button>
 
-            <button onclick="appendValue('4')">4</button>
-            <button onclick="appendValue('5')">5</button>
-            <button onclick="appendValue('6')">6</button>
-            <button class="operator" onclick="appendValue('+')">+</button>
+                <button onclick="appendValue('7')">7</button>
+                <button onclick="appendValue('8')">8</button>
+                <button onclick="appendValue('9')">9</button>
+                <button class="operator" onclick="appendValue('-')">-</button>
 
-            <button onclick="appendValue('1')">1</button>
-            <button onclick="appendValue('2')">2</button>
-            <button onclick="appendValue('3')">3</button>
-            <button class="equal" onclick="calculate()">=</button>
+                <button onclick="appendValue('4')">4</button>
+                <button onclick="appendValue('5')">5</button>
+                <button onclick="appendValue('6')">6</button>
+                <button class="operator" onclick="appendValue('+')">+</button>
 
-            <button onclick="appendValue('0')" style="grid-column: span 2;">0</button>
-            <button onclick="appendValue('.')">.</button>
+                <button onclick="appendValue('1')">1</button>
+                <button onclick="appendValue('2')">2</button>
+                <button onclick="appendValue('3')">3</button>
+                <button class="equal" onclick="calculate()">=</button>
+
+                <button onclick="appendValue('0')" style="grid-column: span 2;">0</button>
+                <button onclick="appendValue('.')">.</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- محتوى دليل كأس العالم (محتوى غني لجوجل أدسينس) -->
+    <div id="guide-tab" class="tab-content">
+        <div class="guide-card">
+            <h2>دليل بث قنوات كأس العالم 2026 مجاناً</h2>
+            <p>مرحباً بكم في الدليل الشامل لمتابعة مباريات بطولة كأس العالم 2026 المقامة في أمريكا، كندا، والمكسيك. هنا نستعرض أبرز الطرق القانونية والقنوات المفتوحة لمشاهدة المباريات الحماسية مجاناً.</p>
+            
+            <div class="section-title">📺 القنوات المفتوحة على الأقمار الصناعية</div>
+            <ul class="channel-list">
+                <li><span>قناة TRT 1 التركية (تردد نايل سات/تركسات)</span> <span class="badge">مفتوحة</span></li>
+                <li><span>قنوات ZDF / Das Erste (قمر أسترا 19)</span> <span class="badge">مفتوحة</span></li>
+                <li><span>البث الأرضي المحلي (حسب دولتك الحاضنة)</span> <span class="badge">مجاني</span></li>
+            </ul>
+
+            <div class="section-title">📱 التطبيقات الرسمية للملخصات والأهداف</div>
+            <p>إذا فوتت مشاهدة المباراة مباشرة، يمكنك متابعة التغطية الحصرية والملخصات بجودة عالية عبر المنصات الرسمية:</p>
+            <ul class="channel-list">
+                <li><span>تطبيق FIFA+ الرسمي</span> <span class="badge">مجاني بالكامل</span></li>
+                <li><span>قنوات بي إن سبورتس الإخبارية المفتوحة على يوتيوب</span> <span class="badge">يوتيوب</span></li>
+            </ul>
+
+            <div class="section-title">💡 نصيحة لمتابعة المباريات بدون تقطيع</div>
+            <p>ننصح دائماً بضبط أجهزة الاستقبال (الريسيفر) الخاصة بكم على قمر أسترا أو الأقمار الأوروبية، حيث تقوم العديد من القنوات الحكومية الأجنبية بنقل مباريات كأس العالم بشكل مجاني ومباشر وبأعلى جودة بث ممكنة دون الحاجة لاشتراكات معقدة.</p>
         </div>
     </div>
 
     <script>
+        // لوجيك التنقل بين التبويبات
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(button => button.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        // لوجيك الآلة الحاسبة
         let display = document.getElementById('display');
-
-        function appendValue(val) {
-            display.value += val;
-        }
-
-        function clearDisplay() {
-            display.value = '';
-        }
-
-        function deleteLast() {
-            display.value = display.value.slice(0, -1);
-        }
-
+        function appendValue(val) { display.value += val; }
+        function clearDisplay() { display.value = ''; }
+        function deleteLast() { display.value = display.value.slice(0, -1); }
         function calculate() {
             try {
                 let result = eval(display.value);
-                if (result !== undefined) {
-                    display.value = result;
-                }
-            } catch (error) {
-                display.value = 'Error';
-            }
+                if (result !== undefined) display.value = result;
+            } catch (error) { display.value = 'Error'; }
         }
-
         function sciOp(op) {
             try {
                 let val = parseFloat(display.value);
                 if (isNaN(val)) val = 0;
-                
                 if (op === 'sin') display.value = Math.sin(val * Math.PI / 180).toFixed(4); 
                 else if (op === 'cos') display.value = Math.cos(val * Math.PI / 180).toFixed(4);
                 else if (op === 'tan') display.value = Math.tan(val * Math.PI / 180).toFixed(4);
                 else if (op === 'sqrt') display.value = Math.sqrt(val);
                 else if (op === 'sq') display.value = Math.pow(val, 2);
-            } catch (e) {
-                display.value = 'Error';
-            }
+            } catch (e) { display.value = 'Error'; }
         }
     </script>
 </body>
