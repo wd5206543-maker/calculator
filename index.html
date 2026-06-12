@@ -3,242 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة حمو الرايق V3</title>
+    <title>منصة حمو المتكاملة 🚀</title>
     <style>
-        :root {
-            --bg-main: #0f0f11;
-            --bg-card: #18181c;
-            --bg-item: #242429;
-            --accent-green: #02e052;
-            --accent-blue: #007aff;
-            --text-muted: #9ca3af;
-        }
-        body {
-            background-color: var(--bg-main);
-            color: #fff;
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            box-sizing: border-box;
-        }
-        .container { width: 100%; max-width: 480px; }
-        h1.logo { text-align: center; font-size: 22px; color: var(--accent-green); margin-bottom: 20px; }
+        /* --- التنسيق العام للموقع --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #1a1a1a; color: white; }
         
-        .dashboard-grid { display: flex; flex-direction: column; gap: 12px; }
-        .main-card {
-            background-color: var(--bg-card); border-radius: 18px; padding: 18px;
-            display: flex; align-items: center; justify-content: space-between;
-            cursor: pointer; border: 1px solid #252529; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            transition: transform 0.2s;
-        }
-        .main-card:active { transform: scale(0.98); }
+        /* --- شريط التنقل والقائمة (Navbar) --- */
+        .navbar { display: flex; justify-content: space-between; align-items: center; background-color: #111; padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+        .logo { font-weight: bold; font-size: 22px; color: #ffcc00; }
+        .menu-icon { font-size: 30px; cursor: pointer; color: white; user-select: none; }
         
-        .main-card.calc { border-left: 5px solid var(--accent-blue); }
-        .main-card.eng { border-left: 5px solid #3d195a; }
-        .main-card.esp { border-left: 5px solid #ee242c; }
-        .main-card.ita { border-left: 5px solid #008fd7; }
-        .main-card.ger { border-left: 5px solid #d20a11; }
-        .main-card.fra { border-left: 5px solid #002f6c; }
-        .main-card.egy { border-left: 5px solid var(--accent-green); }
-        .main-card.sau { border-left: 5px solid #006c35; }
-        
-        .card-info h3 { margin: 0 0 4px 0; font-size: 16px; }
-        .card-info p { margin: 0; font-size: 12px; color: var(--text-muted); }
-        .card-icon { font-size: 20px; }
-        
-        .page { display: none; background-color: var(--bg-card); border-radius: 22px; padding: 15px; margin-top: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); text-align: center; }
-        .page.active { display: block; }
-        .back-btn { background-color: var(--bg-item); color: #fff; border: none; padding: 12px; border-radius: 12px; cursor: pointer; font-weight: bold; margin-bottom: 25px; width: 100%; text-align: center; font-size: 14px; }
-        
-        .launch-box {
-            background: linear-gradient(145deg, #1e1e24, #141418);
-            border: 1px solid #2d2d35;
-            border-radius: 16px;
-            padding: 30px 20px;
-            margin-top: 20px;
-        }
-        .launch-box p { color: var(--text-muted); font-size: 14px; margin-bottom: 25px; line-height: 1.6; }
-        
-        .live-btn {
-            display: inline-flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box;
-            background: linear-gradient(90deg, #02e052, #00b33e); color: #000; text-decoration: none;
-            padding: 16px; border-radius: 14px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 15px rgba(2, 224, 82, 0.3);
-        }
-        
-        .pulse-dot {
-            display: inline-block; width: 10px; height: 10px; background-color: #ff3b30; border-radius: 50%; margin-left: 10px; animation: pulse 1.2s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(0.8); opacity: 0.5; }
-            50% { transform: scale(1.3); opacity: 1; }
-            100% { transform: scale(0.8); opacity: 0.5; }
-        }
+        .nav-links { display: none; position: absolute; top: 62px; right: 0; width: 100%; background-color: #222; list-style: none; flex-direction: column; z-index: 999; }
+        .nav-links li { text-align: center; border-bottom: 1px solid #333; }
+        .nav-links li a { display: block; color: white; padding: 15px; text-decoration: none; font-size: 18px; transition: 0.3s; }
+        .nav-links li a:hover { background-color: #333; color: #ffcc00; }
+        .nav-links.active { display: flex; }
 
-        .calculator { background-color: var(--bg-item); padding: 15px; border-radius: 20px; text-align: right; }
-        #display { width: 100%; height: 60px; background-color: var(--bg-main); border: none; border-radius: 12px; color: #fff; font-size: 24px; text-align: left; padding: 10px; box-sizing: border-box; margin-bottom: 15px; }
+        /* --- نظام عزل الصفحات --- */
+        .page-section { display: none; padding: 20px; min-height: 90vh; }
+        .page-section.active { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* --- 1. تنسيق صفحة الكورة --- */
+        .sports-header { text-align: center; margin-bottom: 20px; color: #ffcc00; }
+        .league-card { background: #282828; padding: 15px; border-radius: 10px; margin-bottom: 15px; border-right: 5px solid #ffcc00; }
+        .match-box { background: #333; padding: 10px; margin-top: 10px; border-radius: 5px; text-align: center; }
+
+        /* --- 2. تنسيق صفحة الآلة الحاسبة --- */
+        .calc-container { max-width: 320px; margin: 40px auto; background: #222; padding: 20px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        #calc-display { width: 100%; height: 60px; background: #333; border: none; color: white; text-align: left; padding: 10px; font-size: 28px; border-radius: 8px; margin-bottom: 20px; }
         .calc-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-        .calc-buttons button { padding: 15px; font-size: 16px; border-radius: 10px; background-color: #333; color: white; border: none; font-weight: bold; cursor: pointer;}
-        .calc-buttons button.operator { background-color: #ff9f0a; }
-        .calc-buttons button.clear { background-color: #a5a5a5; color: black; }
-        .calc-buttons button.equal { grid-column: span 2; background-color: var(--accent-green); color: black; }
+        .calc-btn { padding: 20px; font-size: 20px; border: none; border-radius: 8px; cursor: pointer; background: #444; color: white; transition: 0.2s; }
+        .calc-btn:hover { background: #555; }
+        .btn-operator { background: #ff9500; color: white; }
+        .btn-operator:hover { background: #ffaa33; }
+        .btn-clear { background: #d9534f; }
+        .btn-clear:hover { background: #c9302c; }
+
+        /* --- 3. تنسيق صفحة المتجر --- */
+        .store-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .product-card { background: #282828; padding: 15px; border-radius: 10px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+        .product-card img { max-width: 100%; height: 180px; object-fit: cover; border-radius: 8px; }
+        .product-card h3 { margin: 10px 0; font-size: 18px; }
+        .product-card p { color: #ffcc00; font-size: 16px; margin-bottom: 10px; font-weight: bold; }
+        .btn-add-cart { background: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; width: 100%; font-size: 16px; }
+        .btn-add-cart:hover { background: #0056b3; }
+        .btn-whatsapp-order { display: block; width: 100%; max-width: 300px; margin: 30px auto; background: #25D366; color: white; text-align: center; padding: 15px; border-radius: 8px; font-size: 18px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; }
+        .btn-whatsapp-order:hover { background: #1ebd58; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- الاسم الجديد عشان نكشف الكاش -->
-        <h1 class="logo">🚀 منصة حمو الرايق (تحديث V3 الشغال الجديد)</h1>
+    <nav class="navbar">
+        <div class="logo">منصة حمو 🚀</div>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <ul id="menu-links" class="nav-links">
+            <li><a href="#" onclick="showSection('sports-page')">⚽ كرة ودوريات</a></li>
+            <li><a href="#" onclick="showSection('calc-page')">🧮 آلة حاسبة</a></li>
+            <li><a href="#" onclick="showSection('store-page')">🛒 متجر الواتساب</a></li>
+        </ul>
+    </nav>
 
-        <div id="main-dashboard" class="dashboard-grid">
-            <div class="main-card calc" onclick="openPage('calc-page')">
-                <div class="card-info"><h3>الآلة الحاسبة</h3><p>حل المعادلات فوراً</p></div><div class="card-icon">🧮</div>
-            </div>
-            <div class="main-card eng" onclick="openPage('eng-page')">
-                <div class="card-info"><h3>الدوري الإنجليزي الممتاز</h3><p>ليفربول، السيتي، واليونايتد</p></div><div class="card-icon">🏴</div>
-            </div>
-            <div class="main-card esp" onclick="openPage('esp-page')">
-                <div class="card-info"><h3>الدوري الإسباني</h3><p>ريال مدريد وبرشلونة لايف</p></div><div class="card-icon">🇪🇸</div>
-            </div>
-            <div class="main-card ita" onclick="openPage('ita-page')">
-                <div class="card-info"><h3>الدوري الإيطالي</h3><p>إنتر، ميلان، ويوفنتوس</p></div><div class="card-icon">🇮🇹</div>
-            </div>
-            <div class="main-card ger" onclick="openPage('ger-page')">
-                <div class="card-info"><h3>الدوري الألماني</h3><p>بايرن ميونخ ودورتموند لايف</p></div><div class="card-icon">🇩🇪</div>
-            </div>
-            <div class="main-card fra" onclick="openPage('fra-page')">
-                <div class="card-info"><h3>الدوري الفرنسي</h3><p>باريس سان جيرمان لايف</p></div><div class="card-icon">🇫🇷</div>
-            </div>
-            <div class="main-card egy" onclick="openPage('egy-page')">
-                <div class="card-info"><h3>الدوري المصري الممتاز</h3><p>الأهلي والزمالك والماتشات الحالية</p></div><div class="card-icon">🦅</div>
-            </div>
-            <div class="main-card sau" onclick="openPage('sau-page')">
-                <div class="card-info"><h3>الدوري السعودي للمحترفين</h3><p>الهلال، النصر، والاتحاد</p></div><div class="card-icon">🇸🇦</div>
-            </div>
+    <div id="sports-page" class="page-section active">
+        <h2 class="sports-header">🏆 تغطية الدوريات والمباريات</h2>
+        
+        <div class="league-card">
+            <h3>الدوري الإنجليزي الممتاز</h3>
+            <div class="match-box">ليفربول 🆚 مانشستر سيتي (الساعة 6:00 م)</div>
         </div>
 
-        <!-- صفحة: الآلة الحاسبة -->
-        <div id="calc-page" class="page">
-            <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <div class="calculator">
-                <input type="text" id="display" readonly placeholder="0">
-                <div class="calc-buttons">
-                    <button class="clear" onclick="clearDisplay()">C</button>
-                    <button class="clear" onclick="deleteLast()">DEL</button>
-                    <button onclick="appendValue('(')">(</button>
-                    <button onclick="appendValue(')')">)</button>
-                    <button class="operator" onclick="appendValue('/')">÷</button>
-                    <button onclick="appendValue('7')">7</button>
-                    <button onclick="appendValue('8')">8</button>
-                    <button onclick="appendValue('9')">9</button>
-                    <button class="operator" onclick="appendValue('*')">×</button>
-                    <button onclick="appendValue('4')">4</button>
-                    <button onclick="appendValue('5')">5</button>
-                    <button onclick="appendValue('6')">6</button>
-                    <button class="operator" onclick="appendValue('-')">-</button>
-                    <button onclick="appendValue('1')">1</button>
-                    <button onclick="appendValue('2')">2</button>
-                    <button onclick="appendValue('3')">3</button>
-                    <button class="operator" onclick="appendValue('+')">+</button>
-                    <button onclick="appendValue('0')">0</button>
-                    <button onclick="appendValue('.')">.</button>
-                    <button class="equal" onclick="calculate()">=</button>
-                </div>
-            </div>
+        <div class="league-card">
+            <h3>الدوري المصري</h3>
+            <div class="match-box">الأهلي 🆚 الزمالك (الساعة 9:00 م)</div>
         </div>
-
-        <!-- صفحات الدوريات بسيرفرات سوفا سكور العالمية السريعة -->
-        <div id="eng-page" class="page">
-            <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2>الدوري الإنجليزي 🏴</h2>
-            <div class="launch-box">
-                <p>اضغط للفتح المباشر لجدول المباريات والنتائج الحية للدوري الإنجليزي عبر سيرفر Sofascore.</p>
-                <a href="https://www.sofascore.com/tournament/football/england/premier-league/17" target="_blank" class="live-btn"><span class="pulse-dot"></span>شاهد المباريات والنتائج الآن</a>
-            </div>
-        </div>
-
-        <div id="esp-page" class="page">
-            <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2>الدوري الإسباني 🇪🇸</h2>
-            <div class="launch-box">
-                <p>اضغط للفتح المباشر لجدول المباريات والنتائج الحية للدوري الإسباني عبر سيرفر Sofascore.</p>
-                <a href="https://www.sofascore.com/tournament/football/spain/laliga/8" target="_blank" class="live-btn"><span class="pulse-dot"></span>شاهد المباريات والنتائج الآن</a>
-            </div>
-        </div>
-
-        <div id="ita-page" class="page">
-            <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2>الدوري الإيطالي 🇮🇹</h2>
-            <div class="launch-box">
-                <p>اضغط للفتح المباشر لجدول المباريات والنتائج الحية للدوري الإيطالي عبر سيرفر Sofascore.</p>
-                <a href="https://www.sofascore.com/tournament/football/italy/serie-a/23" target="_blank" class="live-btn"><span class="pulse-dot"></span>شاهد المباريات والنتائج الآن</a>
-            </div>
-        </div>
-
-        <div id="ger-page" class="page">
-            <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2>الدوري الألماني 🇩🇪</h2>
-            <div class="launch-box">
-                <p>اضغط للفتح المباشر لجدول المباريات والنتائج الحية للدوري الألماني عبر سيرفر Sofascore.</p>
-                <a href="https://www.sofascore.com/tournament/football/germany/bundesliga/35" target="_blank" class="live-btn"><span class="pulse-dot"></span>شاهد المباريات والنتائج الآن</a>
-            </div>
-        </div>
-
-        <div id="fra-page" class="page">
-            <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2>الدوري الفرنسي 🇫🇷</h2>
-            <div class="launch-box">
-                <p>اضغط للفتح المباشر لجدول المباريات والنتائج الحية للدوري الفرنسي عبر سيرفر Sofascore.</p>
-                <a href="https://www.sofascore.com/tournament/football/france/ligue-1/34" target="_blank" class="live-btn"><span class="pulse-dot"></span>شاهد المباريات والنتائج الآن</a>
-            </div>
-        </div>
-
-        <div id="egy-page" class="page">
-            <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2>الدوري المصري الممتاز 🦅</h2>
-            <div class="launch-box">
-                <p>اضغط للفتح المباشر لجدول المباريات والنتائج الحية للدوري المصري عبر سيرفر Sofascore.</p>
-                <a href="https://www.sofascore.com/tournament/football/egypt/premiere-league/1055" target="_blank" class="live-btn"><span class="pulse-dot"></span>شاهد المباريات والنتائج الآن</a>
-            </div>
-        </div>
-
-        <div id="sau-page" class="page">
-            <button class="back-btn" onclick="goBack()">🔙 العودة للقائمة الرئيسية</button>
-            <h2>الدوري السعودي 🇸🇦</h2>
-            <div class="launch-box">
-                <p>اضغط للفتح المباشر لجدول المباريات والنتائج الحية للدوري السعودي عبر سيرفر Sofascore.</p>
-                <a href="https://www.sofascore.com/tournament/football/saudi-arabia/saudi-pro-league/937" target="_blank" class="live-btn"><span class="pulse-dot"></span>شاهد المباريات والنتائج الآن</a>
-            </div>
-        </div>
-
     </div>
 
+    <div id="calc-page" class="page-section">
+        <h2 style="text-align: center; color: #ffcc00;">🧮 آلة حاسبة ذكية</h2>
+        <div class="calc-container">
+            <input type="text" id="calc-display" readonly>
+            <div class="calc-buttons">
+                <button class="calc-btn btn-clear" onclick="clearDisplay()">C</button>
+                <button class="calc-btn" onclick="appendValue('/')">/</button>
+                <button class="calc-btn" onclick="appendValue('*')">*</button>
+                <button class="calc-btn btn-operator" onclick="calculateResult()">=</button>
+                
+                <button class="calc-btn" onclick="appendValue('7')">7</button>
+                <button class="calc-btn" onclick="appendValue('8')">8</button>
+                <button class="calc-btn" onclick="appendValue('9')">9</button>
+                <button class="calc-btn" onclick="appendValue('-')">-</button>
+                
+                <button class="calc-btn" onclick="appendValue('4')">4</button>
+                <button class="calc-btn" onclick="appendValue('5')">5</button>
+                <button class="calc-btn" onclick="appendValue('6')">6</button>
+                <button class="calc-btn" onclick="appendValue('+')">+</button>
+                
+                <button class="calc-btn" onclick="appendValue('1')">1</button>
+                <button class="calc-btn" onclick="appendValue('2')">2</button>
+                <button class="calc-btn" onclick="appendValue('3')">3</button>
+                <button class="calc-btn" onclick="appendValue('0')">0</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="store-page" class="page-section">
+        <h2 style="text-align: center; color: #ffcc00;">🛒 متجر حمو التجريبي (طلب عبر واتساب)</h2>
+        <p style="text-align: center; color: #aaa; margin-top: 5px;">اضغط إضافة للسلة ثم اضغط على زرار التأكيد الأخضر أسفل الصفحة</p>
+        
+        <div class="store-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400" alt="كوتشي رياضي">
+                <h3>كوتشي رياضي نايك الأصلي</h3>
+                <p>السعر: 450 جنيه</p>
+                <button class="btn-add-cart" onclick="addToCart('كوتشي نايك رياضي', 450)">إضافة إلى السلة 🛒</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400" alt="سماعة">
+                <h3>سماعة بلوتوث محيطية</h3>
+                <p>السعر: 300 جنيه</p>
+                <button class="btn-add-cart" onclick="addToCart('سماعة بلوتوث', 300)">إضافة إلى السلة 🛒</button>
+            </div>
+        </div>
+
+        <button class="btn-whatsapp-order" onclick="sendOrder()">تأكيد الطلب وشحن عبر الواتساب 💬</button>
+    </div>
+
+
     <script>
-        function openPage(pageId) {
-            document.getElementById('main-dashboard').style.display = 'none';
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-        }
-        function goBack() {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById('main-dashboard').style.display = 'flex';
+        // 1. التحكم بالقائمة العلوية تفتح وتقفل
+        function toggleMenu() {
+            document.getElementById("menu-links").classList.toggle("active");
         }
 
-        let display = document.getElementById('display');
+        // 2. التحكم في عزل وتبديل الصفحات
+        function showSection(sectionId) {
+            // إخفاء كل الصفحات
+            let sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+            
+            // إظهار الصفحة المطلوبة بس
+            document.getElementById(sectionId).classList.add('active');
+            
+            // قفل القائمة بعد الاختيار
+            document.getElementById("menu-links").classList.remove("active");
+        }
+
+        // 3. برمجة الآلة الحاسبة
+        let display = document.getElementById('calc-display');
         function appendValue(val) { display.value += val; }
         function clearDisplay() { display.value = ''; }
-        function deleteLast() { display.value = display.value.slice(0, -1); }
-        function calculate() {
-            try {
-                let result = eval(display.value);
-                if (result !== undefined) display.value = result;
-            } catch (error) { display.value = 'Error'; }
+        function calculateResult() {
+            try { display.value = eval(display.value); } 
+            catch (e) { display.value = 'خطأ علمي'; }
+        }
+
+        // 4. برمجة متجر الواتساب
+        let cart = [];
+        function addToCart(pName, pPrice) {
+            cart.push({ name: pName, price: pPrice });
+            alert("✅ تم إضافة (" + pName + ") إلى سلة المشتريات!");
+        }
+
+        function sendOrder() {
+            if (cart.length === 0) {
+                alert("❌ السلة فاضية! يرجى إضافة منتجات أولاً.");
+                return;
+            }
+            
+            // ضع رقمك أو رقم العميل هنا بكود الدولة (20 لمصر)
+            let myPhoneNumber = "201234567890"; 
+            
+            let message = "مرحباً، حابب أطلب المنتجات دي من موقعك:\n\n";
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                message += `${index + 1}. ${item.name} - ${item.price} جنيه\n`;
+                total += item.price;
+            });
+
+            message += `\n💰 الإجمالي الكلي: ${total} جنيه\n`;
+            message += `يرجى تأكيد الطلب لتجهيز الشحن والشحن المباشر.`;
+
+            let encodedMessage = encodeURIComponent(message);
+            let whatsappURL = `https://wa.me/${myPhoneNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappURL, '_blank');
         }
     </script>
-<script src="https://pl29720302.effectivecpmnetwork.com/6c/72/0f/6c720f5f28aaabf7083abe634565cdb8.js"></script>
 
- </body>
+    </body>
 </html>
