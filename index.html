@@ -25,188 +25,84 @@
             min-height: 100vh;
             box-sizing: border-box;
         }
-        .container {
-            width: 100%;
-            max-width: 480px;
-        }
-        h1.logo {
-            text-align: center;
-            font-size: 24px;
-            color: var(--accent-green);
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(2, 224, 82, 0.2);
-        }
-        /* الشاشة الرئيسية - كروت الأقسام */
-        .dashboard-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+        .container { width: 100%; max-width: 480px; }
+        h1.logo { text-align: center; font-size: 24px; color: var(--accent-green); margin-bottom: 20px; }
+        
+        /* القائمة الرئيسية */
+        .dashboard-grid { display: flex; flex-direction: column; gap: 15px; }
         .main-card {
-            background-color: var(--bg-card);
-            border-radius: 20px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            transition: transform 0.2s, border 0.2s;
-            border: 1px solid #252529;
-        }
-        .main-card:active {
-            transform: scale(0.98);
+            background-color: var(--bg-card); border-radius: 20px; padding: 20px;
+            display: flex; align-items: center; justify-content: space-between;
+            cursor: pointer; border: 1px solid #252529; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
         .main-card.calc { border-left: 5px solid var(--accent-blue); }
         .main-card.wc { border-left: 5px solid #ff9f0a; }
         .main-card.euro { border-left: 5px solid #a55eea; }
         .main-card.egy { border-left: 5px solid var(--accent-green); }
-        
         .card-info h3 { margin: 0 0 5px 0; font-size: 18px; }
         .card-info p { margin: 0; font-size: 13px; color: var(--text-muted); }
-        .card-icon { font-size: 30px; }
-
-        /* صفحات الأقسام الفرعية */
-        .page {
-            display: none;
-            background-color: var(--bg-card);
-            border-radius: 25px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin-top: 10px;
-        }
-        .page.active { display: block; }
         
-        .back-btn {
-            background-color: var(--bg-item);
-            color: #fff;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 13px;
-            margin-bottom: 15px;
-        }
-
-        /* تصميم كروت المباريات (365Scores Style) */
-        .match-card {
-            background-color: var(--bg-item);
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            border: 1px solid #2d2d35;
-        }
-        .match-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 11px;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-        }
-        .live-badge {
-            color: var(--accent-green);
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .live-badge::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background-color: var(--accent-green);
-            border-radius: 50%;
-            display: inline-block;
-            animation: blink 1s infinite;
-        }
+        /* الصفحات المنفصلة */
+        .page { display: none; background-color: var(--bg-card); border-radius: 25px; padding: 20px; margin-top: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .page.active { display: block; }
+        .back-btn { background-color: var(--bg-item); color: #fff; border: none; padding: 8px 15px; border-radius: 10px; cursor: pointer; font-weight: bold; margin-bottom: 15px; }
+        
+        /* كروت الماتشات (365Scores) */
+        .match-card { background-color: var(--bg-item); border-radius: 15px; padding: 15px; margin-bottom: 12px; border: 1px solid #2d2d35; }
+        .match-header { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-bottom: 10px; }
+        .live-badge { color: var(--accent-green); font-weight: bold; display: flex; align-items: center; gap: 4px; }
+        .live-badge::before { content: ''; width: 6px; height: 6px; background-color: var(--accent-green); border-radius: 50%; display: inline-block; animation: blink 1s infinite; }
         @keyframes blink { 50% { opacity: 0; } }
-
-        .match-body {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .team {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex: 1;
-        }
-        .team-icon { font-size: 24px; margin-bottom: 5px; }
-        .team-name { font-size: 14px; font-weight: bold; text-align: center; }
-        .score-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-            padding: 0 10px;
-        }
-        .score { font-size: 24px; font-weight: bold; color: #fff; letter-spacing: 5px; }
+        .match-body { display: flex; align-items: center; justify-content: space-between; }
+        .team { display: flex; flex-direction: column; align-items: center; flex: 1; }
+        .team-name { font-size: 14px; font-weight: bold; margin-top: 5px; }
+        .score-box { display: flex; flex-direction: column; align-items: center; padding: 0 10px; }
+        .score { font-size: 22px; font-weight: bold; letter-spacing: 3px; }
         .match-time { font-size: 12px; color: var(--accent-green); }
 
-        /* لوحة الإحصائيات والتفاصيل */
-        .details-panel {
-            display: none;
-            background-color: var(--bg-main);
-            border-radius: 15px;
-            padding: 15px;
-            margin-top: 10px;
-            border: 1px dashed #3a3a45;
-        }
-        .details-tabs {
-            display: flex;
-            background-color: var(--bg-item);
-            padding: 4px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-        .detail-tab-btn {
-            flex: 1;
-            background: none;
+        /* زرار عرض تفاصيل المباراة المخصص */
+        .view-match-btn {
+            background-color: var(--accent-green);
+            color: #000;
             border: none;
-            color: var(--text-muted);
-            padding: 8px;
-            font-size: 12px;
+            padding: 10px 0;
+            width: 100%;
+            border-radius: 10px;
             font-weight: bold;
+            font-size: 13px;
+            margin-top: 15px;
             cursor: pointer;
-            border-radius: 6px;
+            transition: background 0.2s, transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
         }
-        .detail-tab-btn.active {
-            background-color: var(--bg-card);
-            color: var(--accent-green);
-        }
+        .view-match-btn:active { transform: scale(0.98); background-color: #01b842; }
+
+        /* لوحات الإحصائيات والتشكيل */
+        .details-panel { display: none; background-color: var(--bg-main); border-radius: 15px; padding: 15px; margin-top: 10px; border: 1px dashed #3a3a45; }
+        .details-tabs { display: flex; background-color: var(--bg-item); padding: 4px; border-radius: 8px; margin-bottom: 15px; }
+        .detail-tab-btn { flex: 1; background: none; border: none; color: var(--text-muted); padding: 8px; font-size: 12px; font-weight: bold; cursor: pointer; border-radius: 6px; }
+        .detail-tab-btn.active { background-color: var(--bg-card); color: var(--accent-green); }
         .tab-sub-content { display: none; }
         .tab-sub-content.active { display: block; }
-
-        /* أشرطة الإحصائيات الحقيقية */
+        
+        /* أشرطة الإحصائيات */
         .stat-row { margin-bottom: 12px; }
         .stat-labels { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px; }
-        .stat-bar-container {
-            display: flex;
-            height: 8px;
-            background-color: #333;
-            border-radius: 4px;
-            overflow: hidden;
-        }
+        .stat-bar-container { display: flex; height: 6px; background-color: #333; border-radius: 3px; overflow: hidden; }
         .stat-bar-left { background-color: var(--accent-blue); height: 100%; }
         .stat-bar-right { background-color: var(--accent-green); height: 100%; margin-left: auto; }
-
-        /* التشكيل */
-        .lineup-container { display: flex; justify-content: space-between; font-size: 13px; line-height: 1.8; }
+        .lineup-container { display: flex; justify-content: space-between; font-size: 13px; }
         .lineup-side { width: 48%; }
-        .lineup-title { color: var(--accent-green); font-weight: bold; margin-bottom: 5px; }
+        .lineup-title { color: var(--accent-green); font-weight: bold; }
 
-        /* تصميم الآلة الحاسبة المدمجة */
+        /* الآلة الحاسبة */
         .calculator { background-color: var(--bg-item); padding: 15px; border-radius: 20px; }
-        #display {
-            width: 100%; height: 60px; background-color: var(--bg-main); border: none;
-            border-radius: 12px; color: #fff; font-size: 24px; text-align: left;
-            padding: 10px; box-sizing: border-box; margin-bottom: 15px;
-        }
+        #display { width: 100%; height: 60px; background-color: var(--bg-main); border: none; border-radius: 12px; color: #fff; font-size: 24px; text-align: left; padding: 10px; box-sizing: border-box; margin-bottom: 15px; }
         .calc-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-        .calc-buttons button { padding: 15px; font-size: 16px; border-radius: 10px; background-color: #333; color: white; border: none; font-weight: bold;}
+        .calc-buttons button { padding: 15px; font-size: 16px; border-radius: 10px; background-color: #333; color: white; border: none; font-weight: bold; cursor: pointer;}
         .calc-buttons button.operator { background-color: #ff9f0a; }
         .calc-buttons button.clear { background-color: #a5a5a5; color: black; }
         .calc-buttons button.equal { grid-column: span 2; background-color: var(--accent-green); color: black; }
@@ -215,44 +111,27 @@
 <body>
 
     <div class="container">
-        <h1 class="logo">📱 منصة حمو الرايق الذكية</h1>
+        <h1 class="logo">📱 منصة حمو الرايق الرياضية</h1>
 
-        <!-- الشاشة الرئيسية (Dashboard) -->
         <div id="main-dashboard" class="dashboard-grid">
             <div class="main-card calc" onclick="openPage('calc-page')">
-                <div class="card-info">
-                    <h3>الآلة الحاسبة العلمية</h3>
-                    <p>حل المعادلات والمسائل الرياضية المعقدة</p>
-                </div>
-                <div class="card-icon">🧮</div>
+                <div class="card-info"><h3>الآلة الحاسبة العلمية</h3><p>حل المعادلات الحسابية والمسائل</p></div>
+                <div>🧮</div>
             </div>
-
             <div class="main-card wc" onclick="openPage('wc-page')">
-                <div class="card-info">
-                    <h3>كأس العالم 2026</h3>
-                    <p>مباريات وإحصائيات المونديال العالمي مباشرة</p>
-                </div>
-                <div class="card-icon">🏆</div>
+                <div class="card-info"><h3>بطولة كأس العالم</h3><p>مباريات وإحصائيات المونديال</p></div>
+                <div>🏆</div>
             </div>
-
             <div class="main-card euro" onclick="openPage('euro-page')">
-                <div class="card-info">
-                    <h3>الدوريات الخمس الكبرى</h3>
-                    <p>إنجلترا، إسبانيا، إيطاليا وأقوى مواجهات أوروبا</p>
-                </div>
-                <div class="card-icon">🇪🇺</div>
+                <div class="card-info"><h3>الدوريات الأوروبية الكبرى</h3><p>الإنجليزي، الإسباني، والإيطالي</p></div>
+                <div>🇪🇺</div>
             </div>
-
-            <div class="main-card eag" onclick="openPage('egy-page')">
-                <div class="card-info">
-                    <h3>الدوري المصري الممتاز</h3>
-                    <p>مباريات الأهلي والزمالك وأندية القمة الإفريقية</p>
-                </div>
-                <div class="card-icon">🦅</div>
+            <div class="main-card egy" onclick="openPage('egy-page')">
+                <div class="card-info"><h3>الدوري المصري الممتاز</h3><p>مباريات الأهلي، الزمالك وأندية القمة</p></div>
+                <div>🦅</div>
             </div>
         </div>
 
-        <!-- صفحة: الآلة الحاسبة -->
         <div id="calc-page" class="page">
             <button class="back-btn" onclick="goBack()">🔙 القائمة الرئيسية</button>
             <div class="calculator">
@@ -282,123 +161,85 @@
             </div>
         </div>
 
-        <!-- صفحة: كأس العالم -->
         <div id="wc-page" class="page">
-            <button class="back-btn" onclick="goBack()">🔙 العودة</button>
-            <h2>مباريات كأس العالم الحالية</h2>
+            <button class="back-btn" onclick="goBack()">🔙 القائمة الرئيسية</button>
+            <h2>كأس العالم 🏆</h2>
             
-            <!-- كارت مباراة 1 -->
-            <div class="match-card" onclick="toggleDetails('match-wc1')">
-                <div class="match-header">
-                    <span>دور المجموعات - الجولة 2</span>
-                    <span class="live-badge">مباشر</span>
-                </div>
+            <div class="match-card">
+                <div class="match-header"><span>المجموعة الأولى</span><span class="live-badge">لايف للتجربة</span></div>
                 <div class="match-body">
-                    <div class="team"><span class="team-icon">🇪🇬</span><span class="team-name">مصر</span></div>
-                    <div class="score-box"><div class="score">2 - 1</div><div class="match-time">'72</div></div>
-                    <div class="team"><span class="team-icon">🇪🇸</span><span class="team-name">إسبانيا</span></div>
+                    <div class="team"><span>🇲🇽</span><span class="team-name">المكسيك</span></div>
+                    <div class="score-box"><div class="score">0 - 0</div><div class="match-time">'00</div></div>
+                    <div class="team"><span>🇺🇸</span><span class="team-name">أمريكا</span></div>
                 </div>
+                <button class="view-match-btn" onclick="toggleDetails('det-wc1')">عرض تفاصيل المباراة 📊</button>
             </div>
-            <!-- لوحة إحصائيات مباراة 1 -->
-            <div id="match-wc1" class="details-panel">
-                <div class="details-tabs">
-                    <button class="detail-tab-btn active" onclick="switchSubTab(this, 'stats-wc1')">الإحصائيات</button>
-                    <button class="detail-tab-btn" onclick="switchSubTab(this, 'lineup-wc1')">التشكيل</button>
-                </div>
-                <div id="stats-wc1" class="tab-sub-content active">
-                    <div class="stat-row">
-                        <div class="stat-labels"><span>45%</span><span>الاستحواذ</span><span>55%</span></div>
-                        <div class="stat-bar-container"><div class="stat-bar-left" style="width: 45%"></div><div class="stat-bar-right" style="width: 55%"></div></div>
-                    </div>
-                    <div class="stat-row">
-                        <div class="stat-labels"><span>9</span><span>إجمالي التسديدات</span><span>12</span></div>
-                        <div class="stat-bar-container"><div class="stat-bar-left" style="width: 42%"></div><div class="stat-bar-right" style="width: 58%"></div></div>
-                    </div>
-                </div>
-                <div id="lineup-wc1" class="tab-sub-content">
-                    <div class="lineup-container">
-                        <div class="lineup-side"><div class="lineup-title">مصر</div><div>الشناوي<br>حجازي<br>عبدالمنعم<br>مرموش<br>مصطفى محمد</div></div>
-                        <div class="lineup-side"><div class="lineup-title">إسبانيا</div><div>أوناي سيمون<br>رودري<br>بيدري<br>لامين يامال<br>داني أولمو</div></div>
-                    </div>
-                </div>
+            <div id="det-wc1" class="details-panel">
+                <p style="text-align:center; font-size:12px; color:var(--accent-green)">سيتم تفعيل الإحصائيات الحية مع صافرة البداية الرسمية للمونديال.</p>
             </div>
         </div>
 
-        <!-- صفحة: الدوريات الأوروبية -->
         <div id="euro-page" class="page">
-            <button class="back-btn" onclick="goBack()">🔙 العودة</button>
-            <h2>الدوريات الخمس الكبرى</h2>
+            <button class="back-btn" onclick="goBack()">🔙 القائمة الرئيسية</button>
+            <h2>الدوريات الأوروبية 🇪🇺</h2>
             
-            <div class="match-card" onclick="toggleDetails('match-euro1')">
-                <div class="match-header">
-                    <span>الدوري الإسباني - الكلاسيكو</span>
-                    <span class="live-badge">مباشر</span>
-                </div>
+            <div class="match-card">
+                <div class="match-header"><span>الدوري الإسباني - الجولة 26</span><span class="live-badge">لايف</span></div>
                 <div class="match-body">
-                    <div class="team"><span class="team-icon">⚪</span><span class="team-name">ريال مدريد</span></div>
+                    <div class="team"><span>⚪</span><span class="team-name">ريال مدريد</span></div>
                     <div class="score-box"><div class="score">1 - 1</div><div class="match-time">'35</div></div>
-                    <div class="team"><span class="team-icon">🔵🔴</span><span class="team-name">برشلونة</span></div>
+                    <div class="team"><span>🔵🔴</span><span class="team-name">برشلونة</span></div>
                 </div>
+                <button class="view-match-btn" onclick="toggleDetails('det-euro1')">عرض تفاصيل المباراة 📊</button>
             </div>
-            <div id="match-euro1" class="details-panel">
+            <div id="det-euro1" class="details-panel">
                 <div class="details-tabs">
-                    <button class="detail-tab-btn active" onclick="switchSubTab(this, 'stats-euro1')">الإحصائيات</button>
-                    <button class="detail-tab-btn" onclick="switchSubTab(this, 'lineup-euro1')">التشكيل</button>
+                    <button class="detail-tab-btn active" onclick="switchSubTab(this, 'st-euro1')">الإحصائيات</button>
+                    <button class="detail-tab-btn" onclick="switchSubTab(this, 'ln-euro1')">التشكيل</button>
                 </div>
-                <div id="stats-euro1" class="tab-sub-content active">
+                <div id="st-euro1" class="tab-sub-content active">
                     <div class="stat-row">
                         <div class="stat-labels"><span>52%</span><span>الاستحواذ</span><span>48%</span></div>
                         <div class="stat-bar-container"><div class="stat-bar-left" style="width: 52%"></div><div class="stat-bar-right" style="width: 48%"></div></div>
                     </div>
-                    <div class="stat-row">
-                        <div class="stat-labels"><span>5</span><span>التسديدات على المرمى</span><span>4</span></div>
-                        <div class="stat-bar-container"><div class="stat-bar-left" style="width: 55%"></div><div class="stat-bar-right" style="width: 45%"></div></div>
-                    </div>
                 </div>
-                <div id="lineup-euro1" class="tab-sub-content">
+                <div id="ln-euro1" class="tab-sub-content">
                     <div class="lineup-container">
-                        <div class="lineup-side"><div class="lineup-title">ريال مدريد</div><div>كورتوا<br>ميليتاو<br>فالفيردي<br>بيلينجهام<br>فينيسيوس</div></div>
-                        <div class="lineup-side"><div class="lineup-title">برشلونة</div><div>تير شتيجن<br>كوبارسي<br>رافينيا<br>بيدري<br>ليفاندوفسكي</div></div>
+                        <div class="lineup-side"><div class="lineup-title">الريال</div><div>كورتوا<br>فالفيردي<br>فينيسيوس</div></div>
+                        <div class="lineup-side"><div class="lineup-title">برشلونة</div><div>تير شتيجن<br>بيدري<br>ليفاندوفسكي</div></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- صفحة: الدوري المصري -->
         <div id="egy-page" class="page">
-            <button class="back-btn" onclick="goBack()">🔙 العودة</button>
-            <h2>الدوري المصري الممتاز</h2>
+            <button class="back-btn" onclick="goBack()">🔙 القائمة الرئيسية</button>
+            <h2>الدوري المصري الممتاز 🦅</h2>
             
-            <div class="match-card" onclick="toggleDetails('match-egy1')">
-                <div class="match-header">
-                    <span>الدوري المصري - ديربي القاهرة</span>
-                    <span class="live-badge">مباشر</span>
-                </div>
+            <div class="match-card">
+                <div class="match-header"><span>الأسبوع 18 - استاد القاهرة</span><span class="live-badge">لايف</span></div>
                 <div class="match-body">
-                    <div class="team"><span class="team-icon">🦅</span><span class="team-name">الأهلي</span></div>
+                    <div class="team"><span>🦅</span><span class="team-name">الأهلي</span></div>
                     <div class="score-box"><div class="score">0 - 0</div><div class="match-time">'15</div></div>
-                    <div class="team"><span class="team-icon">🏹</span><span class="team-name">الزمالك</span></div>
+                    <div class="team"><span>🏹</span><span class="team-name">الزمالك</span></div>
                 </div>
+                <button class="view-match-btn" onclick="toggleDetails('det-egy1')">عرض تفاصيل المباراة 📊</button>
             </div>
-            <div id="match-egy1" class="details-panel">
+            <div id="det-egy1" class="details-panel">
                 <div class="details-tabs">
-                    <button class="detail-tab-btn active" onclick="switchSubTab(this, 'stats-egy1')">الإحصائيات</button>
-                    <button class="detail-tab-btn" onclick="switchSubTab(this, 'lineup-egy1')">التشكيل</button>
+                    <button class="detail-tab-btn active" onclick="switchSubTab(this, 'st-egy1')">الإحصائيات</button>
+                    <button class="detail-tab-btn" onclick="switchSubTab(this, 'ln-egy1')">التشكيل</button>
                 </div>
-                <div id="stats-egy1" class="tab-sub-content active">
+                <div id="st-egy1" class="tab-sub-content active">
                     <div class="stat-row">
-                        <div class="stat-labels"><span>58%</span><span>الاستحواذ</span><span>42%</span></div>
-                        <div class="stat-bar-container"><div class="stat-bar-left" style="width: 58%"></div><div class="stat-bar-right" style="width: 42%"></div></div>
-                    </div>
-                    <div class="stat-row">
-                        <div class="stat-labels"><span>2</span><span>الركلات الركنية</span><span>1</span></div>
-                        <div class="stat-bar-container"><div class="stat-bar-left" style="width: 66%"></div><div class="stat-bar-right" style="width: 34%"></div></div>
+                        <div class="stat-labels"><span>60%</span><span>الاستحواذ</span><span>40%</span></div>
+                        <div class="stat-bar-container"><div class="stat-bar-left" style="width: 60%"></div><div class="stat-bar-right" style="width: 40%"></div></div>
                     </div>
                 </div>
-                <div id="lineup-egy1" class="tab-sub-content">
+                <div id="ln-egy1" class="tab-sub-content">
                     <div class="lineup-container">
-                        <div class="lineup-side"><div class="lineup-title">الأهلي</div><div>شوبير<br>ربيعة<br>عطية<br>إمام عاشور<br>وسام أبو علي</div></div>
-                        <div class="lineup-side"><div class="lineup-title">الزمالك</div><div>عواد<br>المثلوثي<br>دونجا<br>زيزو<br>الجزيري</div></div>
+                        <div class="lineup-side"><div class="lineup-title">الأهلي</div><div>شوبير<br>إمام عاشور<br>وسام</div></div>
+                        <div class="lineup-side"><div class="lineup-title">الزمالك</div><div>عواد<br>زيزو<br>الجزيري</div></div>
                     </div>
                 </div>
             </div>
@@ -407,37 +248,26 @@
     </div>
 
     <script>
-        // التبديل بين الصفحات الرئيسية والفرعية
         function openPage(pageId) {
             document.getElementById('main-dashboard').style.display = 'none';
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
         }
-
         function goBack() {
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('main-dashboard').style.display = 'flex';
         }
-
-        // فتح وإغلاق لوحة الإحصائيات (365Scores Dropdown)
         function toggleDetails(panelId) {
             let panel = document.getElementById(panelId);
-            if(panel.style.display === 'block') {
-                panel.style.display = 'none';
-            } else {
-                panel.style.display = 'block';
-            }
+            panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
         }
-
-        // التبديل بين تاب الإحصائيات والتشكيل جوه الماتش
         function switchSubTab(btn, subContentId) {
             let panel = btn.parentElement.parentElement;
             panel.querySelectorAll('.detail-tab-btn').forEach(b => b.classList.remove('active'));
             panel.querySelectorAll('.tab-sub-content').forEach(c => c.classList.remove('active'));
-            
             btn.classList.add('active');
             document.getElementById(subContentId).classList.add('active');
-            event.stopPropagation(); // يمنع قفل القائمة عند الضغط على التاب
+            event.stopPropagation();
         }
 
         // لوجيك الآلة الحاسبة
