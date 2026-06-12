@@ -32,7 +32,7 @@
 
         /* --- 2. تنسيق صفحة الآلة الحاسبة --- */
         .calc-container { max-width: 320px; margin: 40px auto; background: #222; padding: 20px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-        #calc-display { width: 100%; height: 60px; background: #333; border: none; color: white; text-align: left; padding: 10px; font-size: 28px; border-radius: 8px; margin-bottom: 20px; }
+        #calc-display { width: 100%; height: 60px; background: #333; border: none; color: white; text-align: left; padding: 10px; font-size: 28px; border-radius: 8px; margin-bottom: 20px; direction: ltr; }
         .calc-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
         .calc-btn { padding: 20px; font-size: 20px; border: none; border-radius: 8px; cursor: pointer; background: #444; color: white; transition: 0.2s; }
         .calc-btn:hover { background: #555; }
@@ -139,14 +139,10 @@
 
         // 2. التحكم في عزل وتبديل الصفحات
         function showSection(sectionId) {
-            // إخفاء كل الصفحات
             let sections = document.querySelectorAll('.page-section');
             sections.forEach(sec => sec.classList.remove('active'));
             
-            // إظهار الصفحة المطلوبة بس
             document.getElementById(sectionId).classList.add('active');
-            
-            // قفل القائمة بعد الاختيار
             document.getElementById("menu-links").classList.remove("active");
         }
 
@@ -159,7 +155,7 @@
             catch (e) { display.value = 'خطأ علمي'; }
         }
 
-        // 4. برمجة متجر الواتساب
+        // 4. برمجة متجر الواتساب (تم تعديل الرقم هنا لرقمك بنجاح)
         let cart = [];
         function addToCart(pName, pPrice) {
             cart.push({ name: pName, price: pPrice });
@@ -172,7 +168,7 @@
                 return;
             }
             
-            // تم تعديل الرقم هنا لرقمك الخاص بنجاح لضمان وصول الطلبات لك
+            // رقمك الحقيقي والمباشر بدون أي فواصل أو علامات
             let myPhoneNumber = "201117973256"; 
             
             let message = "مرحباً، حابب أطلب المنتجات دي من موقعك:\n\n";
