@@ -8,17 +8,17 @@
 *{box-sizing:border-box;margin:0;padding:0;font-family:"Segoe UI",Tahoma,sans-serif}
 body{background:#050505;color:#fff;overflow-x:hidden}
 .navbar{position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;background:#111;padding:15px 20px;box-shadow:0 4px 15px #000}
-.logo{font-size:23px;font-weight:800;color:#ffcc00}
+.logo{font-size:23px;font-weight:800;color:var(--primary)}
 .menu-icon{font-size:31px;cursor:pointer}
 .nav-links{display:none;position:absolute;top:64px;right:0;width:100%;background:#111;list-style:none}
 .nav-links.active{display:flex;flex-direction:column}
 .nav-links a{display:block;padding:16px;color:#fff;text-decoration:none;text-align:center;border-bottom:1px solid #222}
-.nav-links a:hover{background:#222;color:#ffcc00}
+.nav-links a:hover{background:#222;color:var(--primary)}
 .page-section{display:none;padding:22px;min-height:90vh}
 .page-section.active{display:block;animation:fade .25s}
 @keyframes fade{from{opacity:0}to{opacity:1}}
-.header{text-align:center;color:#ffcc00;margin:15px 0 25px;font-size:28px}
-.league-card{background:#1b1b1d;padding:17px;border-radius:16px;margin-bottom:18px;border-right:5px solid #ffcc00}
+.header{text-align:center;color:var(--primary);margin:15px 0 25px;font-size:28px}
+.league-card,.settings-card{background:#1b1b1d;padding:17px;border-radius:16px;margin-bottom:18px;border-right:5px solid var(--primary)}
 .league-card h3{font-size:21px;margin-bottom:10px}
 .match-box{background:#29292b;padding:14px;margin-top:9px;border-radius:10px;text-align:center;border:1px solid #363638}
 .calc-wrapper{max-width:380px;margin:20px auto;background:#000;padding:15px;border-radius:25px}
@@ -27,21 +27,29 @@ body{background:#050505;color:#fff;overflow-x:hidden}
 #calc-result{font-size:24px;color:#777;direction:ltr;text-align:right;min-height:30px}
 .calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .calc-btn{background:#1c1c1e;color:#fff;border:0;border-radius:50%;aspect-ratio:1;font-size:23px;cursor:pointer}
-.btn-blue-op{color:#2f80ed;font-weight:bold}
-.btn-equal-span{background:#2f80ed;color:#fff;grid-row:span 2;border-radius:35px;aspect-ratio:auto;height:100%}
+.btn-blue-op{color:var(--primary);font-weight:bold}
+.btn-equal-span{background:var(--primary);color:#fff;grid-row:span 2;border-radius:35px;aspect-ratio:auto;height:100%}
 .store-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
 .product-card{background:#1c1c1e;padding:15px;border-radius:16px;border:1px solid #303033;text-align:center}
 .product-card img{width:100%;height:180px;object-fit:cover;border-radius:12px;margin-bottom:12px;background:#111}
 .product-card h3{margin-bottom:8px}
-.price{color:#ffcc00;font-size:20px;font-weight:bold}
+.price{color:var(--primary);font-size:20px;font-weight:bold}
 .btn{width:100%;border:0;padding:13px;border-radius:9px;color:#fff;cursor:pointer;font-weight:bold;margin-top:10px}
-.btn-add{background:#087ff5}.btn-wa{background:#25d366}
+.btn-add{background:#087ff5}.btn-wa{background:#25d366}.btn-save{background:var(--primary);color:#111}.btn-danger{background:#d93636}
 .cart{background:#151517;padding:18px;border-radius:16px;margin-top:22px;border:1px solid #29292c}
 .cart-item{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #29292c}
-.cart-total{font-size:21px;color:#ffcc00;font-weight:bold;margin-top:15px}
-.form input{width:100%;padding:13px;margin-top:10px;border-radius:9px;border:1px solid #333;background:#222;color:#fff}
+.cart-total{font-size:21px;color:var(--primary);font-weight:bold;margin-top:15px}
+.form input,.form select{width:100%;padding:13px;margin-top:10px;border-radius:9px;border:1px solid #333;background:#222;color:#fff}
 .empty{text-align:center;color:#aaa;padding:15px}
 .note{text-align:center;color:#888;font-size:13px;margin-top:15px}
+.setting-row{margin-bottom:15px}
+.setting-row label{display:block;margin-bottom:7px;color:#ccc}
+.setting-row input{width:100%;padding:12px;border-radius:9px;border:1px solid #333;background:#222;color:#fff}
+.product-editor{background:#151517;padding:12px;border-radius:12px;margin-top:10px;border:1px solid #29292c}
+.product-editor input{width:100%;padding:10px;margin:5px 0;border-radius:8px;border:1px solid #333;background:#222;color:#fff}
+.color-row{display:flex;gap:10px;align-items:center}
+.color-row input{width:65px;height:45px;padding:2px}
+.badge{display:inline-block;background:#222;padding:5px 9px;border-radius:20px;color:#aaa;font-size:12px}
 </style>
 </head>
 <body>
@@ -53,6 +61,7 @@ body{background:#050505;color:#fff;overflow-x:hidden}
     <li><a href="#" onclick="showSection('sports-page')">⚽ المباريات</a></li>
     <li><a href="#" onclick="showSection('calc-page')">🧮 الحاسبة</a></li>
     <li><a href="#" onclick="showSection('store-page')">🛒 المتجر</a></li>
+    <li><a href="#" onclick="showSection('settings-page')">⚙️ الإعدادات</a></li>
   </ul>
 </nav>
 
@@ -83,7 +92,6 @@ body{background:#050505;color:#fff;overflow-x:hidden}
 <section id="store-page" class="page-section">
   <h2 class="header">🛒 المتجر</h2>
   <div id="products" class="store-grid"></div>
-
   <div class="cart">
     <h3>🛍️ السلة</h3>
     <div id="cartItems"></div>
@@ -98,34 +106,64 @@ body{background:#050505;color:#fff;overflow-x:hidden}
   </div>
 </section>
 
+<section id="settings-page" class="page-section">
+  <h2 class="header">⚙️ إعدادات المتجر</h2>
+  <div class="settings-card">
+    <span class="badge">الإعدادات تُحفظ على هذا الجهاز</span>
+    <div class="setting-row">
+      <label>اسم المتجر</label>
+      <input id="setName" placeholder="مثال: متجر محمد">
+    </div>
+    <div class="setting-row">
+      <label>رقم واتساب</label>
+      <input id="setWhatsapp" placeholder="مثال: 201117973256">
+    </div>
+    <div class="setting-row">
+      <label>اللون الأساسي</label>
+      <div class="color-row">
+        <input id="setColor" type="color" value="#ffcc00">
+        <span id="colorValue">#ffcc00</span>
+      </div>
+    </div>
+    <button class="btn btn-save" onclick="saveSettings()">💾 حفظ الإعدادات</button>
+    <button class="btn btn-danger" onclick="resetSettings()">↩️ إعادة الإعدادات الافتراضية</button>
+  </div>
+
+  <div class="settings-card">
+    <h3>📦 المنتجات</h3>
+    <div id="productEditors"></div>
+    <button class="btn btn-save" onclick="addProduct()">➕ إضافة منتج</button>
+  </div>
+</section>
+
 <script>
-// ================== إعدادات المنتج ==================
-// عند بيع القالب: غيّر هذه البيانات فقط لكل متجر.
-const CONFIG = {
-  siteName: "متجري",
-  whatsapp: "201117973256",
-  products: [
-    {name:"كوتشي نايك", price:450, image:"https://placehold.co/600x400/111111/ffffff?text=Product"},
-    {name:"تيشيرت رياضي", price:300, image:"https://placehold.co/600x400/111111/ffffff?text=Product"}
+const DEFAULT_CONFIG={
+  siteName:"متجري",
+  whatsapp:"201117973256",
+  color:"#ffcc00",
+  products:[
+    {name:"كوتشي نايك",price:450,image:"https://placehold.co/600x400/111111/ffffff?text=Product"},
+    {name:"تيشيرت رياضي",price:300,image:"https://placehold.co/600x400/111111/ffffff?text=Product"}
   ],
-  matches: [
-    {league:"الدوري الإنجليزي", games:[
-      ["ليفربول","مانشستر سيتي","6:00 م"],
-      ["أرسنال","تشيلسي","8:00 م"]
-    ]},
-    {league:"الدوري الإسباني", games:[
-      ["ريال مدريد","برشلونة","10:00 م"]
-    ]},
-    {league:"الدوري المصري", games:[
-      ["الأهلي","الزمالك","9:00 م"],
-      ["بيراميدز","المصري","7:00 م"]
-    ]}
+  matches:[
+    {league:"الدوري الإنجليزي",games:[["ليفربول","مانشستر سيتي","6:00 م"],["أرسنال","تشيلسي","8:00 م"]]},
+    {league:"الدوري الإسباني",games:[["ريال مدريد","برشلونة","10:00 م"]]},
+    {league:"الدوري المصري",games:[["الأهلي","الزمالك","9:00 م"],["بيراميدز","المصري","7:00 م"]]}
   ]
 };
 
-document.title = CONFIG.siteName;
-document.getElementById("siteLogo").innerText = "🚀 " + CONFIG.siteName;
+let CONFIG=JSON.parse(localStorage.getItem("storeConfig")||"null")||JSON.parse(JSON.stringify(DEFAULT_CONFIG));
 
+function applyConfig(){
+  document.title=CONFIG.siteName;
+  document.getElementById("siteLogo").innerText="🚀 "+CONFIG.siteName;
+  document.documentElement.style.setProperty("--primary",CONFIG.color||"#ffcc00");
+  document.getElementById("setName").value=CONFIG.siteName;
+  document.getElementById("setWhatsapp").value=CONFIG.whatsapp;
+  document.getElementById("setColor").value=CONFIG.color||"#ffcc00";
+  document.getElementById("colorValue").innerText=CONFIG.color||"#ffcc00";
+  renderMatches();renderProducts();renderProductEditors();renderCart();
+}
 function toggleMenu(){document.getElementById("menu-links").classList.toggle("active")}
 function showSection(id){
   document.querySelectorAll(".page-section").forEach(s=>s.classList.remove("active"));
@@ -133,53 +171,34 @@ function showSection(id){
   document.getElementById("menu-links").classList.remove("active");
   window.scrollTo({top:0,behavior:"smooth"});
 }
-
-// المباريات
 function renderMatches(){
-  document.getElementById("matches").innerHTML = CONFIG.matches.map(l => `
-    <div class="league-card">
-      <h3>${l.league}</h3>
-      ${l.games.map(g=>`<div class="match-box">${g[0]} 🆚 ${g[1]} <b>(${g[2]})</b></div>`).join("")}
-    </div>
-  `).join("");
+  document.getElementById("matches").innerHTML=CONFIG.matches.map(l=>`
+    <div class="league-card"><h3>${l.league}</h3>
+    ${l.games.map(g=>`<div class="match-box">${g[0]} 🆚 ${g[1]} <b>(${g[2]})</b></div>`).join("")}
+    </div>`).join("");
 }
-
-// الحاسبة
 let rawInput="";
-const exprDiv=document.getElementById("calc-expression");
-const resDiv=document.getElementById("calc-result");
+const exprDiv=document.getElementById("calc-expression"),resDiv=document.getElementById("calc-result");
 function pressNum(n){rawInput+=n;renderCalc()}
-function pressOp(o){if(!rawInput && o!=="-")return;rawInput+=o;renderCalc()}
+function pressOp(o){if(!rawInput&&o!=="-")return;rawInput+=o;renderCalc()}
 function clearDisplay(){rawInput="";exprDiv.innerText="";resDiv.innerText=""}
 function deleteLast(){rawInput=rawInput.slice(0,-1);renderCalc()}
-function renderCalc(){
-  exprDiv.innerText=rawInput.replace(/\*/g,"×").replace(/\//g,"÷");
-  try{if(rawInput)resDiv.innerText=eval(rawInput)}catch(e){resDiv.innerText=""}
-}
-function pressEqual(){
-  try{rawInput=eval(rawInput).toString();exprDiv.innerText=rawInput;resDiv.innerText=""}catch(e){}
-}
+function renderCalc(){exprDiv.innerText=rawInput.replace(/\*/g,"×").replace(/\//g,"÷");try{if(rawInput)resDiv.innerText=eval(rawInput)}catch(e){resDiv.innerText=""}}
+function pressEqual(){try{rawInput=eval(rawInput).toString();exprDiv.innerText=rawInput;resDiv.innerText=""}catch(e){}}
 
-// المتجر والسلة
 let cart=[];
 function renderProducts(){
   document.getElementById("products").innerHTML=CONFIG.products.map((p,i)=>`
-    <div class="product-card">
-      <img src="${p.image}" alt="${p.name}">
-      <h3>${p.name}</h3>
-      <div class="price">${p.price} جنيه</div>
-      <button class="btn btn-add" onclick="addToCart(${i})">إضافة للسلة 🛒</button>
-    </div>
-  `).join("");
+    <div class="product-card"><img src="${p.image}" alt="${p.name}">
+    <h3>${p.name}</h3><div class="price">${p.price} جنيه</div>
+    <button class="btn btn-add" onclick="addToCart(${i})">إضافة للسلة 🛒</button></div>`).join("");
 }
 function addToCart(i){cart.push(CONFIG.products[i]);renderCart()}
 function renderCart(){
   const box=document.getElementById("cartItems");
   if(!cart.length){box.innerHTML='<div class="empty">السلة فارغة</div>';document.getElementById("cartTotal").innerText="الإجمالي: 0 جنيه";return}
-  box.innerHTML=cart.map((p,i)=>`
-    <div class="cart-item"><span>${p.name}</span><span>${p.price} جنيه <button onclick="removeItem(${i})">❌</button></span></div>
-  `).join("");
-  document.getElementById("cartTotal").innerText="الإجمالي: "+cart.reduce((s,p)=>s+p.price,0)+" جنيه";
+  box.innerHTML=cart.map((p,i)=>`<div class="cart-item"><span>${p.name}</span><span>${p.price} جنيه <button onclick="removeItem(${i})">❌</button></span></div>`).join("");
+  document.getElementById("cartTotal").innerText="الإجمالي: "+cart.reduce((s,p)=>s+Number(p.price),0)+" جنيه";
 }
 function removeItem(i){cart.splice(i,1);renderCart()}
 function sendOrder(){
@@ -187,16 +206,37 @@ function sendOrder(){
   const name=document.getElementById("customerName").value.trim();
   const phone=document.getElementById("customerPhone").value.trim();
   const address=document.getElementById("customerAddress").value.trim();
-  const total=cart.reduce((s,p)=>s+p.price,0);
-  let msg=`طلب جديد من ${CONFIG.siteName}%0A%0A`;
-  cart.forEach((p,i)=>msg+=`${i+1}- ${p.name} — ${p.price} جنيه%0A`);
-  msg+=`%0Aالإجمالي: ${total} جنيه%0A`;
-  msg+=`الاسم: ${name||"غير محدد"}%0Aالهاتف: ${phone||"غير محدد"}%0Aالعنوان: ${address||"غير محدد"}`;
-  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${msg}`,"_blank");
+  const total=cart.reduce((s,p)=>s+Number(p.price),0);
+  let msg=`طلب جديد من ${CONFIG.siteName}\n\n`;
+  cart.forEach((p,i)=>msg+=`${i+1}- ${p.name} — ${p.price} جنيه\n`);
+  msg+=`\nالإجمالي: ${total} جنيه\n`;
+  msg+=`الاسم: ${name||"غير محدد"}\nالهاتف: ${phone||"غير محدد"}\nالعنوان: ${address||"غير محدد"}`;
+  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`,"_blank");
 }
-renderMatches();
-renderProducts();
-renderCart();
+
+function renderProductEditors(){
+  document.getElementById("productEditors").innerHTML=CONFIG.products.map((p,i)=>`
+    <div class="product-editor">
+      <input value="${escapeAttr(p.name)}" placeholder="اسم المنتج" onchange="updateProduct(${i},'name',this.value)">
+      <input type="number" value="${p.price}" placeholder="السعر" onchange="updateProduct(${i},'price',this.value)">
+      <input value="${escapeAttr(p.image)}" placeholder="رابط صورة المنتج" onchange="updateProduct(${i},'image',this.value)">
+      <button class="btn btn-danger" onclick="deleteProduct(${i})">🗑️ حذف المنتج</button>
+    </div>`).join("");
+}
+function escapeAttr(s){return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function updateProduct(i,key,value){CONFIG.products[i][key]=key==="price"?Number(value):value;saveConfig(false)}
+function addProduct(){CONFIG.products.push({name:"منتج جديد",price:0,image:"https://placehold.co/600x400/111111/ffffff?text=Product"});saveConfig(false);applyConfig()}
+function deleteProduct(i){CONFIG.products.splice(i,1);saveConfig(false);applyConfig()}
+function saveConfig(show=true){localStorage.setItem("storeConfig",JSON.stringify(CONFIG));if(show)alert("تم حفظ الإعدادات ✅")}
+function saveSettings(){
+  CONFIG.siteName=document.getElementById("setName").value.trim()||"متجري";
+  CONFIG.whatsapp=document.getElementById("setWhatsapp").value.replace(/\D/g,"");
+  CONFIG.color=document.getElementById("setColor").value;
+  saveConfig();applyConfig();
+}
+function resetSettings(){localStorage.removeItem("storeConfig");CONFIG=JSON.parse(JSON.stringify(DEFAULT_CONFIG));applyConfig();alert("تمت إعادة الإعدادات الافتراضية ✅")}
+document.getElementById("setColor").addEventListener("input",e=>document.getElementById("colorValue").innerText=e.target.value);
+applyConfig();
 </script>
 </body>
 </html>
