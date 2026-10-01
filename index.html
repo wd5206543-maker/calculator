@@ -7,7 +7,7 @@ nav{position:sticky;top:0;z-index:9;background:#111;padding:15px 20px;display:fl
 section{display:none;padding:22px;min-height:90vh}section.on{display:block}.head{text-align:center;color:var(--p);margin:15px 0 25px;font-size:28px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}.card,.admin{background:#1b1b1d;padding:16px;border-radius:16px;border:1px solid #303033}.card{text-align:center}.card img{width:100%;height:180px;object-fit:cover;border-radius:12px}.price{color:var(--p);font-size:20px;font-weight:bold;margin:8px}.btn{width:100%;border:0;padding:13px;border-radius:9px;margin-top:10px;font-weight:bold;cursor:pointer}.add{background:#087ff5;color:#fff}.wa{background:#25d366;color:#fff}.save{background:var(--p);color:#111}.danger{background:#d93636;color:#fff}.dark{background:#333;color:#fff}
 .cart{background:#151517;padding:18px;border-radius:16px;margin-top:22px}.item{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #29292c}.total{color:var(--p);font-size:21px;font-weight:bold;margin-top:15px}input{width:100%;padding:12px;margin-top:10px;border-radius:9px;border:1px solid #333;background:#222;color:#fff}
-.calc{max-width:380px;margin:auto;background:#000;padding:15px;border-radius:25px}.screen{min-height:145px;padding:25px 12px;text-align:right;direction:ltr}.expr{font-size:40px}.res{font-size:24px;color:#777}.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.key{background:#1c1c1e;color:#fff;border:0;border-radius:50%;aspect-ratio:1;font-size:23px}.op{color:var(--p)}.eq{background:var(--p);color:#111;grid-row:span 2;border-radius:35px}
+.calc{max-width:430px;margin:auto;background:#000;padding:10px 12px 18px;border-radius:30px}.screen{min-height:150px;padding:24px 10px 12px;text-align:right;direction:ltr;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}.expr{font-size:42px;line-height:1.15;min-height:50px;white-space:nowrap;overflow-x:auto;scrollbar-width:none}.expr::-webkit-scrollbar{display:none}.res{font-size:25px;color:#777;min-height:32px}.memory-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 12px}.keys{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(72px,1fr);gap:12px}.key{background:#1c1c1e;color:#f5f5f7;border:0;border-radius:50%;aspect-ratio:1;font-size:25px;font-weight:500;cursor:pointer;min-width:0;touch-action:manipulation}.key:active{transform:scale(.96);filter:brightness(1.15)}.mem{font-size:22px;color:#c8c8cc}.op{color:#4285f4;font-size:32px}.eq{background:#4285f4;color:#fff;grid-row:span 2;border-radius:34px;font-size:42px;aspect-ratio:auto;height:100%;min-height:156px}
 .hide{display:none!important}.editor{background:#151517;padding:12px;border-radius:12px;margin-top:10px}
 .note{text-align:center;color:#888;font-size:13px;margin-top:10px}
 </style></head><body>
@@ -19,12 +19,48 @@ section{display:none;padding:22px;min-height:90vh}section.on{display:block}.head
 <input id="name" placeholder="اسم العميل"><input id="phone" placeholder="رقم الهاتف"><input id="address" placeholder="العنوان">
 <button class="btn wa" onclick="order()">تأكيد الطلب عبر واتساب 💬</button></div></section>
 
-<section id="calc"><h2 class="head">🧮 الآلة الحاسبة</h2><div class="calc"><div class="screen"><div id="expr" class="expr"></div><div id="res" class="res"></div></div>
-<div class="keys"><button class="key op" onclick="clearCalc()">C</button><button class="key op" onclick="op('/')">÷</button><button class="key op" onclick="op('*')">×</button><button class="key op" onclick="del()">⌫</button>
-<button class="key" onclick="num('7')">7</button><button class="key" onclick="num('8')">8</button><button class="key" onclick="num('9')">9</button><button class="key op" onclick="op('-')">−</button>
-<button class="key" onclick="num('4')">4</button><button class="key" onclick="num('5')">5</button><button class="key" onclick="num('6')">6</button><button class="key op" onclick="op('+')">+</button>
-<button class="key" onclick="num('1')">1</button><button class="key" onclick="num('2')">2</button><button class="key" onclick="num('3')">3</button><button class="key eq" onclick="equal()">=</button>
-<button class="key" onclick="num('0')">0</button><button class="key" onclick="num('.')">.</button></div></div></section>
+<section id="calc">
+<h2 class="head">🧮 الآلة الحاسبة</h2>
+<div class="calc">
+  <div class="screen">
+    <div id="expr" class="expr"></div>
+    <div id="res" class="res"></div>
+  </div>
+
+  <div class="memory-row">
+    <button class="key mem" onclick="memoryClear()">MC</button>
+    <button class="key mem" onclick="memoryAdd()">M+</button>
+    <button class="key mem" onclick="memorySub()">M−</button>
+    <button class="key mem" onclick="memoryRecall()">MR</button>
+  </div>
+
+  <div class="keys">
+    <button class="key op" onclick="clearCalc()">C</button>
+    <button class="key op" onclick="op('/')">÷</button>
+    <button class="key op" onclick="op('*')">×</button>
+    <button class="key op" onclick="del()">⌫</button>
+
+    <button class="key" onclick="num('7')">7</button>
+    <button class="key" onclick="num('8')">8</button>
+    <button class="key" onclick="num('9')">9</button>
+    <button class="key op" onclick="op('-')">−</button>
+
+    <button class="key" onclick="num('4')">4</button>
+    <button class="key" onclick="num('5')">5</button>
+    <button class="key" onclick="num('6')">6</button>
+    <button class="key op" onclick="op('+')">+</button>
+
+    <button class="key" onclick="num('1')">1</button>
+    <button class="key" onclick="num('2')">2</button>
+    <button class="key" onclick="num('3')">3</button>
+    <button class="key eq" onclick="equal()">=</button>
+
+    <button class="key" onclick="percent()">%</button>
+    <button class="key" onclick="num('0')">0</button>
+    <button class="key" onclick="num('.')">.</button>
+  </div>
+</div>
+</section>
 
 <section id="admin"><h2 class="head">🔐 لوحة الإدارة</h2>
 <div id="login" class="admin"><h3>دخول المدير</h3><input id="pass" type="password" placeholder="كلمة المرور"><button class="btn save" onclick="loginAdmin()">دخول 🔓</button><p class="note">الحماية هنا لإخفاء واجهة الإدارة فقط.</p></div>
@@ -40,22 +76,84 @@ const DEF={siteName:"متجري",whatsapp:"201117973256",color:"#ffcc00",currenc
 {name:"كوتشي نايك",price:450,image:"https://placehold.co/600x400/111111/ffffff?text=Product"},
 {name:"تيشيرت رياضي",price:300,image:"https://placehold.co/600x400/111111/ffffff?text=Product"}]};
 let C=JSON.parse(localStorage.getItem("storeConfig")||"null")||JSON.parse(JSON.stringify(DEF));
-C.currency=C.currency||"جنيه"; C.delivery=Number(C.delivery||0);
-let ADMIN_PASSWORD=localStorage.getItem("storeAdminPassword")||DEFAULT_ADMIN_PASSWORD,cart=[],raw="";
+C.currency=C.currency||"جنيه"; C.delivery=Number(C.delivery||0); C.whatsapp=normalizeWhatsApp(C.whatsapp);
+let ADMIN_PASSWORD=localStorage.getItem("storeAdminPassword")||DEFAULT_ADMIN_PASSWORD,cart=[],raw=""; C.whatsapp=normalizeWhatsApp(C.whatsapp); localStorage.setItem("storeConfig",JSON.stringify(C));
 function apply(){document.title=C.siteName+" 🚀";logo.innerText="🚀 "+C.siteName;document.documentElement.style.setProperty("--p",C.color);sname.value=C.siteName;wa.value=C.whatsapp;currency.value=C.currency;delivery.value=C.delivery;color.value=C.color;render();edit()}
+function normalizeWhatsApp(v){
+  let n=String(v||"").replace(/\D/g,"");
+  if(n.startsWith("00")) n=n.slice(2);
+  if(n.startsWith("20")) return n;
+  if(n.startsWith("0") && n.length===11) return "20"+n.slice(1);
+  return n;
+}
 function menu(){links.classList.toggle("on")}function show(id){document.querySelectorAll("section").forEach(x=>x.classList.remove("on"));document.getElementById(id).classList.add("on");links.classList.remove("on");scrollTo(0,0)}
 function render(){products.innerHTML=C.products.map((p,i)=>`<div class="card"><img src="${esc(p.image)}"><h3>${esc(p.name)}</h3><div class="price">${p.price} ${C.currency}</div><button class="btn add" onclick="addCart(${i})">إضافة للسلة 🛒</button></div>`).join("");drawCart()}
 function addCart(i){cart.push(C.products[i]);drawCart()}function drawCart(){if(!cart.length){items.innerHTML='<p style="text-align:center;color:#aaa;padding:15px">السلة فارغة</p>';total.innerText="الإجمالي: 0 "+C.currency;return}items.innerHTML=cart.map((p,i)=>`<div class="item"><span>${esc(p.name)}</span><span>${p.price} ${C.currency} <button onclick="removeItem(${i})">❌</button></span></div>`).join("");let subtotal=cart.reduce((a,p)=>a+Number(p.price),0), ship=Number(C.delivery||0), grand=subtotal+ship; total.innerText="الإجمالي: "+grand+" "+C.currency+(ship?" (توصيل "+ship+" "+C.currency+")":"")}function removeItem(i){cart.splice(i,1);drawCart()}
-function order(){if(!cart.length)return alert("أضف منتجًا أولًا");if(!name.value.trim()||!phone.value.trim()||!address.value.trim())return alert("من فضلك اكتب الاسم ورقم الهاتف والعنوان أولًا ❌");let subtotal=cart.reduce((a,p)=>a+Number(p.price),0),ship=Number(C.delivery||0),t=subtotal+ship,m=`طلب جديد من ${C.siteName}\n\n`;cart.forEach((p,i)=>m+=`${i+1}- ${p.name} — ${p.price} ${C.currency}\n`);m+=`\nالإجمالي: ${t} ${C.currency}\nرسوم التوصيل: ${ship} ${C.currency}\nالاسم: ${name.value||"غير محدد"}\nالهاتف: ${phone.value||"غير محدد"}\nالعنوان: ${address.value||"غير محدد"}`;open("https://wa.me/"+C.whatsapp+"?text="+encodeURIComponent(m),"_blank")}
+function order(){if(!cart.length)return alert("أضف منتجًا أولًا");if(!name.value.trim()||!phone.value.trim()||!address.value.trim())return alert("من فضلك اكتب الاسم ورقم الهاتف والعنوان أولًا ❌");C.whatsapp=normalizeWhatsApp(C.whatsapp); let subtotal=cart.reduce((a,p)=>a+Number(p.price),0),ship=Number(C.delivery||0),t=subtotal+ship,m=`طلب جديد من ${C.siteName}\n\n`;cart.forEach((p,i)=>m+=`${i+1}- ${p.name} — ${p.price} ${C.currency}\n`);m+=`\nالإجمالي: ${t} ${C.currency}\nرسوم التوصيل: ${ship} ${C.currency}\nالاسم: ${name.value||"غير محدد"}\nالهاتف: ${phone.value||"غير محدد"}\nالعنوان: ${address.value||"غير محدد"}`;if(!C.whatsapp) return alert("رقم واتساب المتجر غير مضبوط. ادخل لوحة الإدارة واكتب الرقم ثم احفظه ❌");
+let waUrl="https://wa.me/"+normalizeWhatsApp(C.whatsapp)+"?text="+encodeURIComponent(m);
+window.open(waUrl,"_blank","noopener,noreferrer")}
 function loginAdmin(){if(pass.value===ADMIN_PASSWORD){document.getElementById("login").classList.add("hide");document.getElementById("panel").classList.remove("hide")}else alert("كلمة المرور غير صحيحة ❌")}function logout(){document.getElementById("panel").classList.add("hide");document.getElementById("login").classList.remove("hide");document.getElementById("pass").value=""}
 function edit(){editors.innerHTML=C.products.map((p,i)=>`<div class="editor"><input value="${esc(p.name)}" onchange="upd(${i},'name',this.value)"><input type="number" value="${p.price}" onchange="upd(${i},'price',this.value)"><input value="${esc(p.image)}" onchange="upd(${i},'image',this.value)"><button class="btn danger" onclick="delProd(${i})">🗑️ حذف</button></div>`).join("")}
 function upd(i,k,v){C.products[i][k]=k==="price"?Number(v):v;localStorage.setItem("storeConfig",JSON.stringify(C));render()}function add(){C.products.push({name:"منتج جديد",price:0,image:"https://placehold.co/600x400/111111/ffffff?text=Product"});localStorage.setItem("storeConfig",JSON.stringify(C));apply()}function delProd(i){C.products.splice(i,1);localStorage.setItem("storeConfig",JSON.stringify(C));apply()}
-function save(){C.siteName=sname.value.trim()||"متجري";C.whatsapp=wa.value.replace(/\D/g,"");C.currency=currency.value.trim()||"جنيه";C.delivery=Math.max(0,Number(delivery.value)||0);C.color=color.value;localStorage.setItem("storeConfig",JSON.stringify(C));apply();alert("تم حفظ إعدادات المتجر ✅")}
+function save(){C.siteName=sname.value.trim()||"متجري";C.whatsapp=normalizeWhatsApp(wa.value);C.currency=currency.value.trim()||"جنيه";C.delivery=Math.max(0,Number(delivery.value)||0);C.color=color.value;localStorage.setItem("storeConfig",JSON.stringify(C));apply();alert("تم حفظ إعدادات المتجر ✅")}
 function resetStore(){if(!confirm("سيتم استعادة اسم المتجر واللون والواتساب والمنتجات ورسوم التوصيل. هل أنت متأكد؟"))return;C=JSON.parse(JSON.stringify(DEF));localStorage.setItem("storeConfig",JSON.stringify(C));apply();alert("تمت استعادة الإعدادات الافتراضية ✅")}
 function exportSettings(){const data={storeConfig:C,adminPassword:ADMIN_PASSWORD};const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="storex-backup.json";a.click();URL.revokeObjectURL(a.href)}
 function importSettings(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!d.storeConfig||!Array.isArray(d.storeConfig.products))throw 0;C=d.storeConfig;ADMIN_PASSWORD=d.adminPassword||ADMIN_PASSWORD;localStorage.setItem("storeConfig",JSON.stringify(C));localStorage.setItem("storeAdminPassword",ADMIN_PASSWORD);apply();alert("تم استيراد النسخة الاحتياطية بنجاح ✅")}catch(x){alert("ملف النسخة الاحتياطية غير صالح ❌")}e.target.value=""};r.readAsText(f)}
 function changePassword(){let old=oldpass.value,n1=newpass.value,n2=newpass2.value;if(old!==ADMIN_PASSWORD)return alert("كلمة المرور الحالية غير صحيحة ❌");if(n1.length<4)return alert("كلمة المرور الجديدة يجب أن تكون 4 أحرف أو أرقام على الأقل ❌");if(n1!==n2)return alert("تأكيد كلمة المرور غير مطابق ❌");ADMIN_PASSWORD=n1;localStorage.setItem("storeAdminPassword",ADMIN_PASSWORD);oldpass.value="";newpass.value="";newpass2.value="";alert("تم تغيير كلمة المرور بنجاح ✅")}
 function esc(x){return String(x).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-function num(n){raw+=n;calc()}function op(o){if(!raw&&o!=="-")return;raw+=o;calc()}function del(){raw=raw.slice(0,-1);calc()}function clearCalc(){raw="";expr.innerText="";res.innerText=""}function calc(){expr.innerText=raw.replace(/\*/g,"×").replace(/\//g,"÷");try{res.innerText=raw?eval(raw):""}catch(e){res.innerText=""}}function equal(){try{raw=eval(raw).toString();expr.innerText=raw;res.innerText=""}catch(e){}}
+let memory=0,justEvaluated=false;
+function num(n){
+  if(justEvaluated){raw="";justEvaluated=false}
+  if(n==="." && /(?:^|[+\-*/])\d*\.\d*$/.test(raw)) return;
+  raw+=n; calc();
+}
+function op(o){
+  if(justEvaluated) justEvaluated=false;
+  if(!raw && o!=="-") return;
+  if(/[+\-*/]$/.test(raw)){raw=raw.slice(0,-1)+o}
+  else raw+=o;
+  calc();
+}
+function del(){raw=raw.slice(0,-1);calc()}
+function clearCalc(){raw="";expr.innerText="";res.innerText="";justEvaluated=false}
+function safeEval(s){
+  if(!s || !/^[0-9+*/().\-\s]+$/.test(s)) throw new Error("invalid");
+  return Function('"use strict";return ('+s+')')();
+}
+function calc(){
+  expr.innerText=raw.replace(/\*/g,"×").replace(/\//g,"÷").replace(/-/g,"−");
+  try{
+    let v=raw?safeEval(raw):"";
+    res.innerText=(v!=="" && Number.isFinite(v))?v:"";
+  }catch(e){res.innerText=""}
+}
+function equal(){
+  try{
+    let v=safeEval(raw);
+    if(!Number.isFinite(v)) throw new Error("invalid");
+    raw=String(v);
+    expr.innerText=raw;
+    res.innerText="";
+    justEvaluated=true;
+  }catch(e){}
+}
+function percent(){
+  if(!raw) return;
+  try{
+    let m=raw.match(/^(.*?)([+\-*/])(\d+(?:\.\d+)?)$/);
+    if(m && (m[2]==="+" || m[2]==="-")){
+      let base=safeEval(m[1]);
+      let pct=Number(m[3])/100;
+      raw=String(m[2]==="+" ? base + base*pct : base - base*pct);
+    }else{
+      raw=String(safeEval(raw)/100);
+    }
+    calc();
+  }catch(e){}
+}
+function memoryClear(){memory=0}
+function memoryAdd(){try{memory+=Number(safeEval(raw||"0"))}catch(e){}}
+function memorySub(){try{memory-=Number(safeEval(raw||"0"))}catch(e){}}
+function memoryRecall(){raw=String(memory);justEvaluated=false;calc()}catch(e){}}
 apply();
 </script><footer style="text-align:center;padding:20px;color:#777;font-size:12px">StoreX — قالب متجر جاهز للتخصيص والبيع</footer></body></html>
